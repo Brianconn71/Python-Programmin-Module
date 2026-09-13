@@ -44,7 +44,8 @@ def english_score(text):
     >>> english_score("attack at dawn")
     8
     """
-    return  # YOUR CODE HERE
+    common = set("etaoin")
+    return sum(1 for c in text.lower() if c in common)
 
 
 def crack(s):
@@ -62,7 +63,23 @@ def crack(s):
     >>> crack("khoor zruog")
     'ebiil tloia'
     """
-    return  # YOUR CODE HERE
+    
+    return max((text for k, text in all_shifts(s)), key=english_score)
 
 
 # ANSWER: (the QUESTION is at the top of this file)
+#
+# "khoor zruog" is only 10 letters, so counting occurrences of e/t/a/o/i/n
+# is too noisy to be reliable: on such a short message, some wrong shift
+# can rack up as many (or more) of those six letters as the true plaintext
+# purely by chance, so english_score picks the wrong winner.
+#
+# To fix it, the scoring function needs more signal than six letter counts
+# on a handful of characters. Two options:
+#   1. Score against the full English letter-frequency distribution (all
+#      26 letters, weighted by how common each is) instead of a crude
+#      count of six letters — still noisy on short text, but less so.
+#   2. Check candidate words against a dictionary of real English words.
+#      "hello world" are real words and "ebiil tloia" are not, so this
+#      would decisively pick the right decoding even for short messages,
+#      because it doesn't rely on statistics at all.
