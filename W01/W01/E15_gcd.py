@@ -37,4 +37,11 @@ def gcd(a, b):
     >>> gcd(7, 0)
     7
     """
-    return  # YOUR CODE HERE
+    def transform(pair):
+        a, b = pair
+        return (b, a % b)
+
+    def done(pair):
+        return pair[1] == 0
+
+    return iterate((a, b), transform, done)[0]
