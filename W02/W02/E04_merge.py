@@ -30,4 +30,11 @@ def merge(d1, d2):
     >>> second
     {'a': 17, 'c': 3}
     """
-    return  # YOUR CODE HERE
+    # Dicts preserve insertion order
+    new_dict = {}
+
+    for v, k in d1.items():
+        new_dict[v] = k
+    for t ,r in d2.items():
+        new_dict[t] = r
+    return  new_dict
