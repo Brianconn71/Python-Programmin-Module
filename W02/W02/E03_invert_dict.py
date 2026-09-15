@@ -34,4 +34,7 @@ def invert_dict(d):
     return {v:k for k, v in d.items()}
 
 
-# ANSWER: (the QUESTION is at the top of this file)
+# ANSWER:
+# Doctest loses a pair as Key values need to be unique
+# When {"a": 1, "b": 1} becomes inverted we get two separate keys with value 1 which is not allowed in dictionaries.
+# essentially, 1: "b" overwrites 1:"a" and "a" becomes lost
