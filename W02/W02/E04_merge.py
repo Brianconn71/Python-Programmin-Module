@@ -33,8 +33,8 @@ def merge(d1, d2):
     # Dicts preserve insertion order
     new_dict = {}
 
-    for v, k in d1.items():
-        new_dict[v] = k
-    for t ,r in d2.items():
-        new_dict[t] = r
+    for key, value in d1.items():
+        new_dict[key] = value
+    for key,value in d2.items():
+        new_dict[key] = value
     return  new_dict
