@@ -50,4 +50,4 @@ def tally_counter(xs):
     >>> tally_counter("banana")["z"]
     0
     """
-    return
+    return Counter(xs)
