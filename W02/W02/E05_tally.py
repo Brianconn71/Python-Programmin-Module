@@ -22,11 +22,12 @@ def tally(xs):
     >>> tally("banana")
     {'b': 1, 'a': 3, 'n': 2}
     """
-    count = 0
     new_dict = {}
     for value in xs:
-        count += 1
-        new_dict[value] = count
+        if value in new_dict:
+            new_dict[value] += 1
+        else:
+            new_dict[value] = 1
     return new_dict
 
 
@@ -49,4 +50,4 @@ def tally_counter(xs):
     >>> tally_counter("banana")["z"]
     0
     """
-    return  # YOUR CODE HERE
+    return
