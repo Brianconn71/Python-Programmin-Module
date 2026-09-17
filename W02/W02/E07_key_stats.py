@@ -34,7 +34,19 @@ def longest_run(history):
     >>> longest_run("")
     0
     """
-    return  # YOUR CODE HERE
+    if not history:
+        return 0
+    count = 1
+    highest = 1
+    previous_letter = history[0]
+    for letter in history[1:]:
+        if letter == previous_letter:
+            count += 1
+            highest = max(highest, count)
+        else:
+            count = 1
+        previous_letter = letter
+    return highest
 
 
 def switch_rate(history):
