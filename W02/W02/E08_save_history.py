@@ -34,7 +34,12 @@ def history_path(student_id):
     >>> history_path("12345678").parent.name
     'data'
     """
-    return  # YOUR CODE HERE
+    # The f-string is producing literal text, not doing concatenation.
+    # Inside an f-string, only what's in {} gets evaluated — everything else (including the + "/" + parts) is treated as plain text to be inserted verbatim.
+    # So f'{DATA} + "/" + {student_id} + ".txt"' literally produces the string:
+    pathfile = DATA / f"{student_id} + .txt"
+
+    return  pathfile
 
 
 def save_history(history, student_id):
