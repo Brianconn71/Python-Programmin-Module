@@ -72,7 +72,21 @@ def switch_rate(history):
     >>> switch_rate("")
     0.0
     """
-    return  # YOUR CODE HERE
+    if len(history) <=1:
+        return 0.0
+    
+    previous_letter = history[0]
+    count = 0
+    
+    for value in history[1:]:
+        if value != previous_letter:
+            count += 1
+        previous_letter = value
+
+    answer = count / (len(history) - 1)
+
+
+    return  float(answer)
 
 
 # ANSWER: (the QUESTION is at the top of this file)
