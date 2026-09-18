@@ -76,7 +76,10 @@ def load_histories(student_id):
     >>> load_histories("nobody_at_all")
     []
     """
-    return  # YOUR CODE HERE
+    
+    with open(history_path(student_id), "r") as file:
+        load_history = file.read().splitlines()
+    return  load_history
 
 
 def total_keys(student_id):
