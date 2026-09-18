@@ -36,8 +36,8 @@ def history_path(student_id):
     """
     # The f-string is producing literal text, not doing concatenation.
     # Inside an f-string, only what's in {} gets evaluated — everything else (including the + "/" + parts) is treated as plain text to be inserted verbatim.
-    # So f'{DATA} + "/" + {student_id} + ".txt"' literally produces the string:
-    pathfile = DATA / f"{student_id} + .txt"
+    # build the full filename as one string first, then join it to DATA once:
+    pathfile = DATA / f"history_{student_id}.txt"
 
     return  pathfile
 
@@ -54,7 +54,9 @@ def save_history(history, student_id):
     ddff
     >>> history_path("testA").unlink()
     """
-    return  # YOUR CODE HERE
+    #pathfile = DATA / f"{student_id} + .txt"
+    with open(history_path(student_id), "a") as file:
+        file.write(history + "\n")
 
 
 def load_histories(student_id):
