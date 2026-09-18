@@ -68,7 +68,21 @@ def accuracy(history, k):
     >>> accuracy("", 3)
     0.0
     """
-    return  # YOUR CODE HERE
+    counts = Counter()
+    seen = ""
+    correct = 0
+    total = 0
+
+    for value in history:
+        guess = predict(counts, seen, k)
+        if guess == value:
+            correct += 1
+        update(counts, seen, value, k)
+        seen += value
+        total += 1
+    if total == 0:
+        return 0.0
+    return correct / total
 
 
 def sweep(history, ks=range(1, 9)):
@@ -77,7 +91,7 @@ def sweep(history, ks=range(1, 9)):
     >>> sweep("fdfdfdfdfd", [1, 2, 3])
     {1: 0.9, 2: 0.8, 3: 0.8}
     """
-    return  # YOUR CODE HERE
+    return {k: accuracy(history, k) for k in ks}
 
 
 if __name__ == "__main__":
