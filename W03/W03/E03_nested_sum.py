@@ -27,4 +27,12 @@ def nested_sum(items):
     >>> nested_sum([[[[7]]]])
     7
     """
-    return  # YOUR CODE HERE
+    count = 0
+
+    for item in items:
+        if isinstance(item, list):
+            count += nested_sum(item)
+        else:
+            count += item
+    
+    return  count
