@@ -46,3 +46,4 @@ def heaviest(pairs):
 
 
 # ANSWER: (the QUESTION is at the top of this file)
+# .sort() throws away the list as it has already done its work in place. It returns None as a result.
