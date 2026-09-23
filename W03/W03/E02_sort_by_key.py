@@ -41,7 +41,8 @@ def heaviest(pairs):
     >>> heaviest([("spoke", 5)])
     'spoke'
     """
-    return  # YOUR CODE HERE
+    max_result = max(pairs, key=lambda p: p[1])[0]
+    return  max_result
 
 
 # ANSWER: (the QUESTION is at the top of this file)
