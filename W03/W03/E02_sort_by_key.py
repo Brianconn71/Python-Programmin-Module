@@ -27,7 +27,8 @@ def sort_by_mass(pairs):
     >>> parts
     [('frame', 2200), ('spoke', 5)]
     """
-    return  # YOUR CODE HERE
+    result = sorted(pairs, key=lambda p: p[1])
+    return  result
 
 
 def heaviest(pairs):
