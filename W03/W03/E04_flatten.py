@@ -26,4 +26,12 @@ def flatten(items):
     >>> flatten([[[[7]]]])
     [7]
     """
-    return  # YOUR CODE HERE
+    out = []
+
+    for item in items:
+        if isinstance(item, list):
+            out += flatten(item)
+        else:
+            out.append(item)
+
+    return out
