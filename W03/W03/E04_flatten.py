@@ -35,3 +35,32 @@ def flatten(items):
             out.append(item)
 
     return out
+
+def flatten_extend(items):
+    """Return a flat list of every number in items, in the order they appear.
+
+    Same two cases as nested_sum. The only difference is what you do with
+    the answer from below: append adds one item, extend adds all the items
+    of another list.
+
+    >>> flatten_extend([1, 2, 3])
+    [1, 2, 3]
+    >>> flatten_extend([1, [2, 3], [4, [5]]])
+    [1, 2, 3, 4, 5]
+    >>> flatten_extend([])
+    []
+    >>> flatten_extend([[], [[]]])
+    []
+    >>> flatten_extend([[[[7]]]])
+    [7]
+    """
+    out = []
+
+    for item in items:
+        if isinstance(item, list):
+            # recurse first and then extend the flattened result.
+            out.extend(flatten_extend(item))
+        else:
+            out.append(item)
+
+    return out
