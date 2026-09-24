@@ -39,7 +39,15 @@ def count_parts(node):
     >>> count_parts(bicycle["children"][0]["children"][1])   # one spoke
     1
     """
-    return  # YOUR CODE HERE
+    x = 0
+
+    for value in node:
+        if isinstance(value, list):
+            count_parts(value)
+            alue["qty"]:
+            x += 1
+
+    return 3
 
 
 def deepest(node):
