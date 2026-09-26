@@ -24,6 +24,5 @@ def is_palindrome(s):
     >>> is_palindrome('abcba')
     True
     """
-
-    """s[::-1] reads as: "give me all of s, but walk through it backwards" — which produces the reversed string."""  
+    # returning True if the input list is the same as input list back to front using slicing.
     return s == s[::-1]
