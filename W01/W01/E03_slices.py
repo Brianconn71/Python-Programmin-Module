@@ -18,8 +18,9 @@ def middle(s):
     >>> middle([1, 2, 3, 4])
     [2, 3]
     """
-    o = s[1:-1]
-    return  o
+    # slice the list based on excluding first and last item
+    everythingElse = s[1:-1]
+    return  everythingElse
 
 
 def last_three(s):
@@ -32,5 +33,6 @@ def last_three(s):
     >>> last_three([1, 2, 3, 4, 5])
     [3, 4, 5]
     """
-    last = s[-3:]
-    return  last
+    # Slice list and return last three items
+    lastThree = s[-3:]
+    return  lastThree
