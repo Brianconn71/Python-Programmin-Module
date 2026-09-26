@@ -29,13 +29,17 @@ def newton_sqrt(x, tol=1e-10):
     >>> round(newton_sqrt(73.7), 6)
     8.58487
     """
-    if x < 0:
-        raise ValueError(f"Square root undefined for input {x}")
+    # if the number is 0 ten return 0 as a float 0.0
     if x == 0:
         return 0.0
-    g = float(x)
+    # Guess turned into a float
+    guess = float(x)
     while True:
-        g = (g + x / g) / 2
-        if abs(g * g - x) < tol:
+        # averaging if guess is too big and x / guess is too small. Root is between them.
+        guess = (guess + x / guess) / 2
+        # checks how far away the guess is from x. tol = tolerance, once smaller than tolerance guess is good.
+        if abs(guess * guess - x) < tol:
+            # we can now break the loop
             break
-    return g
+    # return the guess.
+    return guess
