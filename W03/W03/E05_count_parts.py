@@ -71,11 +71,18 @@ def deepest(node):
     >>> deepest(bicycle["children"][1])
     0
     """
+
+    if "children" not in node:
+        return 0
+    
     count = 0
 
-    for value in node:
-        print(value)
-        if isinstance(value, list):
-            count +=  deepest(value)
+    for value in node["children"]:
+        if deepest(value) > count:
+            count += 1
 
     return  count
+
+
+if __name__ == "__main__":
+    print(deepest(bicycle))
