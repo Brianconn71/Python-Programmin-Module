@@ -22,11 +22,17 @@ def cumsum(L):
     >>> cumsum((5, 5, 5))
     [5, 10, 15]
     """
+    # initialize an empty list
     list = []
-    r = 0
+    # initialize a counter
+    count = 0
 
-    for v in L:
-        r += v
-        list.append(r)
+    # loop through values input
+    for value in L:
+        # sum up the values added to the counter
+        count += value
+        # then append to new list
+        list.append(count)
 
+    # return the list
     return list
