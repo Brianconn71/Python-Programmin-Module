@@ -26,14 +26,19 @@ def flatten(items):
     >>> flatten([[[[7]]]])
     [7]
     """
+    # new list initialized
     out = []
 
+    # loop through the items inside list argument
     for item in items:
+        # if the item is a list
         if isinstance(item, list):
+            # then take this list and run it back through the function again.
             out += flatten(item)
         else:
+            # if its not a list, then we are adding the item to our newly created list
             out.append(item)
-
+    # then we return the list.
     return out
 
 def flatten_extend(items):
@@ -54,6 +59,8 @@ def flatten_extend(items):
     >>> flatten_extend([[[[7]]]])
     [7]
     """
+    # added in a new function to deal with extend method, same as above except
+    # we use recursion to send the list through the function while adding the whole list to the outpur.
     out = []
 
     for item in items:
