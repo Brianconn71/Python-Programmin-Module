@@ -29,10 +29,14 @@ def hailstone_step(n):
     >>> hailstone_step(1)
     4
     """
+    # modulo of the input divided by 2, if not 0 its odd
     if n % 2 != 0:
+        # so if odd we times by three
         n = (3 * n) + 1
     else:
+        # Otherwither wise by 2
         n = n // 2
+    # then return the number
     return  n
 
 
@@ -48,4 +52,5 @@ def reaches_one(n):
     >>> iterate(27, hailstone_step, reaches_one)
     1
     """
+    # if the input number is 1 then return true otherwise false
     return n ==1
