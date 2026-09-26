@@ -43,14 +43,18 @@ def count_parts(node):
     #if "qty" in node:
      #       return node["qty"] if keep(node) else 0
     #return sum(c["qty"] * unit_mass(c, keep) for c in node["children"])
+    # initialize a counter
     count = 0
+    # if the material field is in the dictionary then we know we have a specific part which has a quantity to be added.
     if "material" in node:
         return 1
     
-    for x in node["children"]:
-        count += x["qty"] * count_parts(x)
+    # for the value in the loop which is a list of a nodes children
+    for value in node["children"]:
+        # we are adding the count with the value for the field qty times the amount of parts in the node.
+        count += value["qty"] * count_parts(value)
 
-
+    # returnng the count of the parts.
     return count
 
 
@@ -67,4 +71,11 @@ def deepest(node):
     >>> deepest(bicycle["children"][1])
     0
     """
-    return  # YOUR CODE HERE
+    count = 0
+
+    for value in node:
+        print(value)
+        if isinstance(value, list):
+            count +=  deepest(value)
+
+    return  count
