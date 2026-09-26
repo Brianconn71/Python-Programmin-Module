@@ -27,8 +27,12 @@ def rotate(s, k):
     >>> rotate("", 2)
     ''
     """
+    # if the input is blank then return what was input i.e in this case an empty string is returned.
     if not s:
         return s
     
+    # Modulo of the lenght of the input divided by the cipher number input
+    # eg. if k = 7 and len(s) = 5 then 7% 5 = 2
     k = k % len(s)
+    # so now we return a new input to the user which splits based on the index provided by k above
     return s[k:] + s[:k]
