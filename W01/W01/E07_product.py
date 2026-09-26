@@ -22,7 +22,13 @@ def product(L):
     >>> product([2, 3, 4])
     24
     """
+    # initialize the product as 1 as the product of an empty input will be 1
     product = 1
-    for l in L:
-        product *= l
+
+    # loop through the input
+    for value in L:
+        # product is previous value * new value so new loop value * the product we initalized which will then change to new value once loop moves through to next stage
+        product *= value
+
+    # return our product value.
     return product
