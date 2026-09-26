@@ -22,7 +22,9 @@ def first_last(L):
     >>> first_last("hello")
     ('h', 'o')
     """
-    f = L[0]
-    l = L[-1]
+    # gets the first and last index sliced from list l
+    first = L[0]
+    last = L[-1]
 
-    return  f, l
+    # return them as a tuple
+    return  first, last
