@@ -30,7 +30,10 @@ def get_or(d, key, default):
     >>> get_or({"ann": 0}, "ann", 99)
     0
     """
+    # if the dictionary key is present in the dictionary
     if key in d:
+        # return the value of the key field
         return d[key]
     else:
+        # else return the default arguement to user
         return default 
