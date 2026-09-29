@@ -37,11 +37,19 @@ def gcd(a, b):
     >>> gcd(7, 0)
     7
     """
+    # Biggest number to divide a nad b exactly.a
+    # calling transform with a tuple
     def transform(pair):
+        # unpack the tuple to variables
         a, b = pair
+        # New tuple pair of variable b alongside whats left over once a is divided by b.
         return (b, a % b)
 
+    # function to stop once second number is 0
     def done(pair):
+        # pair[1] is the second number in the tuple, when this is 0 when first number in tuple is answer.
         return pair[1] == 0
 
+    # starts with a pair of values and then keeps running transform and done until an answer is obtained.
+    # then the final pair with [0] the first number will be the greates common denominator.
     return iterate((a, b), transform, done)[0]
