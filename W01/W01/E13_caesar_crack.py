@@ -16,18 +16,30 @@ ALPHABET = "abcdefghijklmnopqrstuvwxyz"
 
 def caesar(s, k):
     """Shift every letter of s forward by k places. Leave other characters alone."""
+    # same function as what was in ex 12
+    # builds the alphabet rotated by whatever k is
+    # k % 26 is what keeps the shift between 0 and 25
     shifted = ALPHABET[k % 26:] + ALPHABET[:k % 26]
+    # initialize an empty list
     out = []
-    for c in s:
-        if c in ALPHABET:
-            out.append(shifted[ALPHABET.index(c)])
+    # for each individual letter 
+    for letter in s:
+        # if the letter is in our already initialized alphabet string
+        if letter in ALPHABET:
+            # then append the letter in the index of shifted o the new list so if k = 4 a = e
+            out.append(shifted[ALPHABET.index(letter)])
         else:
-            out.append(c)
+            # if its not in the alphabet then just add it to the new list
+            out.append(letter)
+    # then return the list as one string
     return "".join(out)
 
 
 def all_shifts(s):
     """Given: every possible decoding, as (k, plaintext) tuples."""
+    # same function as in ex 12
+    # except I used a list comprehension rather than a loop.
+    # Comprehension fits the list, loop and append in the same line.
     return [(k, caesar(s, -k)) for k in range(26)]
 
 
@@ -44,7 +56,10 @@ def english_score(text):
     >>> english_score("attack at dawn")
     8
     """
+    # setting a set of common letters in the alphabet
     common = set("etaoin")
+    # list comprehension to go through each input argument character and add 1 for each time a common letter is present.
+    # .lower to account for and capitalized letter which may be used by the user.
     return sum(1 for c in text.lower() if c in common)
 
 
@@ -64,22 +79,14 @@ def crack(s):
     'ebiil tloia'
     """
     
+    # list comprehension which returns the text with the maximum score, the key= is used to check what we should compare by
     return max((text for k, text in all_shifts(s)), key=english_score)
 
 
 # ANSWER: (the QUESTION is at the top of this file)
 #
-# "khoor zruog" is only 10 letters, so counting occurrences of e/t/a/o/i/n
-# is too noisy to be reliable: on such a short message, some wrong shift
-# can rack up as many (or more) of those six letters as the true plaintext
-# purely by chance, so english_score picks the wrong winner.
-#
-# To fix it, the scoring function needs more signal than six letter counts
-# on a handful of characters. Two options:
-#   1. Score against the full English letter-frequency distribution (all
-#      26 letters, weighted by how common each is) instead of a crude
-#      count of six letters — still noisy on short text, but less so.
-#   2. Check candidate words against a dictionary of real English words.
-#      "hello world" are real words and "ebiil tloia" are not, so this
-#      would decisively pick the right decoding even for short messages,
-#      because it doesn't rely on statistics at all.
+# The message used is too short. Wrong shift used could contain more common letters than real answer.
+
+# 2 ways to fix are below:
+#   1. Score all 26 letters in alphabet by how common they are in english.
+#   2. Ensure the words used are actual real words.
