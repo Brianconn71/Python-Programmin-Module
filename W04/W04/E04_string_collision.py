@@ -52,7 +52,17 @@ def find_collision(words, capacity):
     >>> find_collision([], 8) is None
     True
     """
-    return  # YOUR CODE HERE
+    # intiliazing an empty dictionary for storing and remembering bucket number with the word that went to it first
+    empty_dict = {}
+    # loop through input list one word at a time
+    for word in words:
+        word_index = bucket_index(word, capacity)
+        if word_index in empty_dict:
+            return (empty_dict[word_index], word)
+        else:
+            empty_dict[word_index] = word
+
+    return None
 
 
 if __name__ == "__main__":
