@@ -45,7 +45,17 @@ def is_hashable(x):
     >>> is_hashable((1, [2, 3]))
     False
     """
-    return  # YOUR CODE HERE
+    # try except block to cath the typeerror as suggested
+    # We are trying to use pythons builtin hash function to hash whatever we get as input into the function.
+    # if we cannot hash then we return False and if the input is hashable we return true.
+    try:
+        hash(x)
+    except TypeError as e:
+        return False
+    return True
 
 
 # ANSWER: (the QUESTION is at the top of this file)
+# A tuple builds a hash by hashing the items stored inside it and then combining the result.
+# is_hashable((1, (2, 3))) works because both are mutable objects stored inside it while,
+# is_hashable((1, [2, 3])) is not because a list cannot be hashed as its a mutable object.
