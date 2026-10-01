@@ -116,7 +116,22 @@ class SimpleDict:
         >>> 3 in d
         False
         """
-        return  # YOUR CODE HERE
+        # Initially was dealing with an error method' object does not support item deletion
+        # self._bucket is the method so to overcome error I initialized a variable bucket which stores the list
+        # bucket is the same list object as whats in self.buckets so changes made to the list changes the list itself.
+        bucket = self._bucket(key)
+        # need to index the list so I can access the pair so using the builtin enumerate function to index list as i
+        for i, (k, v) in enumerate(bucket):
+            # if the pair value is equal to the value im looking for from bucket
+            if k == key:
+                # removesd the tuple pair at the index
+                del bucket[i]
+                # an item less is now stored so length of the list needs to be updated.
+                self.n -= 1
+                # just stops the loop at this point.
+                return
+        # raise a key error if loop finishes without a match being found.
+        raise KeyError(key)
 
 
 # Deleting is easy here only because each bucket is its own list: take the
