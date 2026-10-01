@@ -56,12 +56,17 @@ def find_collision(words, capacity):
     empty_dict = {}
     # loop through input list one word at a time
     for word in words:
+        # Get the index of the word in the list using function defined above
         word_index = bucket_index(word, capacity)
+        # if the index is in the newly created dict.
         if word_index in empty_dict:
+            # then return the value for the field in the new dict and the word we are looping through
             return (empty_dict[word_index], word)
         else:
+            # else just add the word to the empty dict.
             empty_dict[word_index] = word
 
+    # default return None if no collision.
     return None
 
 
