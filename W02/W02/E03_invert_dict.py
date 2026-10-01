@@ -31,10 +31,12 @@ def invert_dict(d):
     >>> invert_dict({"a": 1, "b": 1})
     {1: 'b'}
     """
+    # dict comprtehension
+    # essentially it loops through the key value pairs in the dictionary and creates a new dictionary with original value as key and vice versa.
     return {v:k for k, v in d.items()}
 
 
 # ANSWER:
 # Doctest loses a pair as Key values need to be unique
-# When {"a": 1, "b": 1} becomes inverted we get two separate keys with value 1 which is not allowed in dictionaries.
-# essentially, 1: "b" overwrites 1:"a" and "a" becomes lost
+# {"a": 1, "b": 1} becomes inverted we get two separate keys with the same value which is not allowed in dictionaries.
+# So, essentially, 1: "b" overwrites 1:"a" and "a" becomes lost
