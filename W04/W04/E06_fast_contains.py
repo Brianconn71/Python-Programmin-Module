@@ -143,7 +143,16 @@ class SimpleDict:
         >>> all((p in slow) == (p in fast) for p in probe)
         True
         """
-        return  # YOUR CODE HERE
+        bucket = self._bucket(key)
+        
+        for k, v in bucket:
+            if k == key:
+                return True
+        return False
+        #setBucket = set(bucket)
+        #if key in bucket:
+            #return True
+        #return False
 
 
 # Given: the measuring. You do not have to understand it, but the comments say
@@ -213,3 +222,11 @@ if __name__ == "__main__":
 
 
 # ANSWER: (the QUESTION is at the top of this file)
+
+#microseconds for `k in d`
+
+#       |    PairListDict |SimpleDict (E01) |  + __contains__
+#     n | present  absent | present  absent | present  absent
+#   500 |    13.5    22.0 |    31.3    63.7 |    0.27    0.26
+#  2000 |    47.7    87.7 |   135.1   266.1 |    0.26    0.24
+# 8000 |   188.5   354.6 |   543.1  1018.6 |    0.26    0.25
