@@ -143,12 +143,16 @@ class SimpleDict:
         >>> all((p in slow) == (p in fast) for p in probe)
         True
         """
+        # call the _bucket function. inside the class which returns the buckets list.
+        # if the key is actually in the dictionary then it will have to be in this list due to the __setitem__ function.
+        # only finds this bucket then.
         bucket = self._bucket(key)
         
         for k, v in bucket:
             if k == key:
                 return True
         return False
+        # Initially tried to use a set to try to speed up the operation of this but couldnt quite get it to click.
         #setBucket = set(bucket)
         #if key in bucket:
             #return True
