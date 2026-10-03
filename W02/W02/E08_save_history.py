@@ -34,11 +34,11 @@ def history_path(student_id):
     >>> history_path("12345678").parent.name
     'data'
     """
-    # The f-string is producing literal text, not doing concatenation.
-    # Inside an f-string, only what's in {} gets evaluated — everything else (including the + "/" + parts) is treated as plain text to be inserted verbatim.
-    # build the full filename as one string first, then join it to DATA once:
+    # using the DATA global variable which is the path to the data folder inside Wo2
+    # I am then adding a new file to this folder with history and student id number. as a txt file
     pathfile = DATA / f"history_{student_id}.txt"
 
+    # I am then returning the path this file is on.
     return  pathfile
 
 
@@ -54,8 +54,10 @@ def save_history(history, student_id):
     ddff
     >>> history_path("testA").unlink()
     """
-    #pathfile = DATA / f"{student_id} + .txt"
+    # Open the file in append mode and adding the history to the file
+    # with Open opens the file and when that block ends the file gets closed
     with open(history_path(student_id), "a") as file:
+        # Writing the historyto the student ID file as a new line.
         file.write(history + "\n")
 
 
@@ -76,11 +78,19 @@ def load_histories(student_id):
     >>> load_histories("nobody_at_all")
     []
     """
+    # using a try except block because if a student has no file they have no sessions and no file is found in the folder
+    # FileNotFoundError gets returned so I am accounting for this by not returning the actual error itself but an empty list which is whats expected.
     try:
+        # Open the file in read mode
         with open(history_path(student_id), "r") as file:
+            # reading the file and removing the new lines from the file
             load_history = file.read().splitlines()
+        # values then get returned to us in a list
         return  load_history
+    # file not found error for when a student has no sessions, its a great way to overcome errors as it lets you return a default value
+    # when the file is not found
     except FileNotFoundError:
+        # return an empty list.
         return []
 
 
@@ -96,8 +106,12 @@ def total_keys(student_id):
     >>> total_keys("nobody_at_all")
     0
     """
+    # Initialize count variable at 0
     count = 0
     
-    for x in load_histories(student_id):
-        count += len(x)
+    # loop through the values we get inside the list returned from the function load_histories
+    for value in load_histories(student_id):
+        # count is then equal to the length of the characters inside the value
+        count += len(value)
+    # We return this count value.
     return count
