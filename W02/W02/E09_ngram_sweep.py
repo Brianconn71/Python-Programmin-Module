@@ -68,20 +68,40 @@ def accuracy(history, k):
     >>> accuracy("", 3)
     0.0
     """
+    # initialize the counts variable which will be used to count each pattern was followed by f or d
     counts = Counter()
+    # initializing below variables to start at nothing before being updated inside the loop
     seen = ""
     correct = 0
     total = 0
 
+    # loops through the values input into function parameter
     for value in history:
+        # For guess, call the predict function with the count of the patterns.
+        # k which is user input to be the number of keys.
+        # Seen which is the number of keys we have seen concatenated.
+        # Value from this function is then stored in guess variable. 
         guess = predict(counts, seen, k)
+        # if the guess value is the same as the value we are currently iterating with
         if guess == value:
+            # then we are correct so correct variable needs to be update plus 1
             correct += 1
+        # where model is learning.
+        # call update function with counts - the patterns
+        # seen which the string of values we have now seen concatenated together
+        # and the value which is the current value we are iterating with.
         update(counts, seen, value, k)
+        # Seen variable now concatenates the value we are iterating with.
+        # seen now should grow with key presses
         seen += value
+        # the total value gets updated plus 1
+        # means we have made another prediction and added to total predictions
         total += 1
+    # If the loop never runs then total will be 0
     if total == 0:
+        # as a result we return 0.0 to overcome divide by zero errors.
         return 0.0
+    # return the divison of correct by the total value which should give us the predictions that were right as a decimal / float value.
     return correct / total
 
 
@@ -91,6 +111,8 @@ def sweep(history, ks=range(1, 9)):
     >>> sweep("fdfdfdfdfd", [1, 2, 3])
     {1: 0.9, 2: 0.8, 3: 0.8}
     """
+    # dictinary comprehension - runs the accuracy function with history agument by the user
+    # returns for us a dictionary of the accuracy of the predictions with user input history and list of the number of key values to remember.
     return {k: accuracy(history, k) for k in ks}
 
 
@@ -104,3 +126,17 @@ if __name__ == "__main__":
 
 
 # ANSWER: (the QUESTION is at the top of this file)
+# ran python3 E09_ngram_sweep.py and got below results
+# 600 keypresses
+#  n =  2  (k = 1)   87.5%
+#  n =  3  (k = 2)   87.2%
+#  n =  4  (k = 3)   86.8%
+#  n =  5  (k = 4)   86.3%
+#  n =  6  (k = 5)   86.0%
+#  n =  7  (k = 6)   85.3%
+#  n =  8  (k = 7)   84.2%
+#  n =  9  (k = 8)   83.0%
+
+# n of value 2 received the best score 
+# With longer n values the computer could capture more patterns but there may not be enough to learn from it.
+# small n is efficient, big n needs more data to sufficiently learn from it.
