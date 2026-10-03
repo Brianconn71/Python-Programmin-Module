@@ -22,12 +22,18 @@ def tally(xs):
     >>> tally("banana")
     {'b': 1, 'a': 3, 'n': 2}
     """
+    # new dict intialized
     new_dict = {}
+    # loop through the values in the input list.
     for value in xs:
+        # if the value is already in the new dictionary
         if value in new_dict:
+            # then we add 1 to the running total/counter.
             new_dict[value] += 1
         else:
+            # if its not in the dictionary then we initalize a new key pair in the dictionary
             new_dict[value] = 1
+    # then return the newly created dictionary.
     return new_dict
 
 
@@ -50,4 +56,6 @@ def tally_counter(xs):
     >>> tally_counter("banana")["z"]
     0
     """
+    # this function is essentially the same as whats above but uses Pythons built in Counter 
+    # Counter loops over the input list and keeps counts of each item it sees in it.
     return Counter(xs)
