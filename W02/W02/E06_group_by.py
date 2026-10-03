@@ -24,19 +24,14 @@ def group_by_first_letter(words):
     >>> group_by_first_letter(["one"])
     {'o': ['one']}
     """
-    #d = defaultdict(list)
-    #new_dict = {}
-    #l = []
-    #for x in words:
-    #    if x[0] not in new_dict:
-    #        new_dict[x[0]] = [x]
-    #    else:
-    #        new_dict[x[0]].append(x)
-    #    return  new_dict
-    # below creates an empty list to each first letter
-    # then append adds to it
+    # defaultdict(list) creates a dictionary which will automatically create an empty list. 
+    # The first time a key is used that is not yet in the dictionary
     default = defaultdict(list)
+    # loop through the values we are getting from the input
     for word in words:
+        # adding the value from the input to the newly created dictionary.
+        # The key will be the first letter of the value we are iterating with.
         default[word[0]].append(word)
+    # now change the default dictionary back to a plain dictionary and return it to user.
     return dict(default)
 
