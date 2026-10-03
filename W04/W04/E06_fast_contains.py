@@ -148,9 +148,12 @@ class SimpleDict:
         # only finds this bucket then.
         bucket = self._bucket(key)
         
+        # for the key value pair in the list bucket
         for k, v in bucket:
+            # if this pairs key matches they key we are looking for.
             if k == key:
                 return True
+        # if the key is not in the bucket then return false after looping.
         return False
         # Initially tried to use a set to try to speed up the operation of this but couldnt quite get it to click.
         #setBucket = set(bucket)
