@@ -34,18 +34,30 @@ def longest_run(history):
     >>> longest_run("")
     0
     """
+    # if the input is empty then just return 0.
     if not history:
         return 0
+    # initializing variables to start at 1 as we have dealt with empyt inputs with if statement above so anything else starts as a 1 at a minimum.
     count = 1
     highest = 1
-    previous_letter = history[0]
+    # use slicing to get the very first character in the input
+    first_letter = history[0]
+    # start the for loop from the second character in the input using slicing [1:]
+    # keep looping to the end as no end value added.
     for letter in history[1:]:
-        if letter == previous_letter:
+        # in this iteration does the value equeal the first character which we initialized above as the first_letter?
+        if letter == first_letter:
+            # count variable gets updated to add 1 as key is repeated
             count += 1
+            # highest variable now checks if the count variable is greater than the count
+            # if count is bigger then update highest variable.
             highest = max(highest, count)
         else:
+            # if values arent equal then count stays the same
             count = 1
-        previous_letter = letter
+        # now before, looping again we change the first_letter variable to equal the value of the value in this iteration and loop again with a new first_letter variable value equalling the previous character we looped through.
+        first_letter = letter
+    # once finished we return the maximum count value stored in the highest variable to symbolise longest run of same values.
     return highest
 
 
@@ -72,12 +84,17 @@ def switch_rate(history):
     >>> switch_rate("")
     0.0
     """
+    # if statement to deal with a case where there are no pairs and has no reason to divide.
+    # divide by zero would give an error.
     if len(history) <=1:
         return 0.0
     
+    #gets the first value from our input argument to the function.
     previous_letter = history[0]
+    # initialize count variable to start at 0
     count = 0
     
+    # looping through the input from the second value onwards.
     for value in history[1:]:
         if value != previous_letter:
             count += 1
