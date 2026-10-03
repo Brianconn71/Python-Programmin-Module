@@ -30,11 +30,16 @@ def merge(d1, d2):
     >>> second
     {'a': 17, 'c': 3}
     """
-    # Dicts preserve insertion order
+    # initialize a new dictionary for storing contents of the merge.
     new_dict = {}
 
+    # using .items method to unpack the Dictionaries key and value pair to two searate variables.
     for key, value in d1.items():
+        # then adding this to the new Dictionary
         new_dict[key] = value
-    for key,value in d2.items():
-        new_dict[key] = value
+    # same thing is happening here as above
+    for k,v in d2.items():
+        # no need for an if statement in this loop because d2 key values will overwrite d1 anyway as its set.
+        new_dict[k] = v
+    # return the newly created dictionary.
     return  new_dict
