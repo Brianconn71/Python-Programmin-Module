@@ -96,14 +96,20 @@ def switch_rate(history):
     
     # looping through the input from the second value onwards.
     for value in history[1:]:
+        # if the current value does not equal the previous value
         if value != previous_letter:
+            # then count gets updated plus 1
             count += 1
+        # before looping again we change the previous letter variable to equal the current value
         previous_letter = value
-
+    # then once loop has finished we get the answer by dividing the count value by the length of the history input argument -1 which equals amount of values we have looped through
     answer = count / (len(history) - 1)
-
-
+    
+    # then we return the answer variable and ensure it returns as a float by wrapping pythons built in float method around it to make it explicit
+    # dividing in python should return a float but the foloat method ensures us safety..
     return  float(answer)
 
 
 # ANSWER: (the QUESTION is at the top of this file)
+# if it was something similar to a fair coin flip and only two values were accepted then value should be 0.5
+# Any time you would select a value after the first attempt then theres a 0.5 probability of retyping the same key and a 0,5 probability of the oppisite being clicked.
