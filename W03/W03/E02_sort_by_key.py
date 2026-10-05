@@ -27,7 +27,12 @@ def sort_by_mass(pairs):
     >>> parts
     [('frame', 2200), ('spoke', 5)]
     """
+    # result is a variable setup to include the result of calling sorted on the list we take as an argument.
+    # It is expected to return a new list of tuples sorted based on the second item in the tuple.
+    # lambda is a function that in this case returns the second value in the pair based on the pair we take as argument.
+    # sorted essentialy builds a new sorted list based on pairs argument but doesnt change the Pair argument.
     result = sorted(pairs, key=lambda p: p[1])
+    # we then return the result which should be a new sorted list based on the original argument without changing that argument.
     return  result
 
 
@@ -41,9 +46,14 @@ def heaviest(pairs):
     >>> heaviest([("spoke", 5)])
     'spoke'
     """
+    # max_result gets the biggest second item in the pair of tuples and returns it as the maximum value.
+    # Follows similar logic as sort_by_mass afunction which uses lambda as a small function to return the second item in the pair of tuples
+    # this sorts list based on the biggest second value which is what we are expecting and then uses list slicing [0] to return the biggest value
     max_result = max(pairs, key=lambda p: p[1])[0]
+    # then return the value we found using list slicing as the maximum value.
     return  max_result
 
 
 # ANSWER: (the QUESTION is at the top of this file)
-# .sort() throws away the list as it has already done its work in place. It returns None as a result.
+# .sort() throws away the list as it has already done its work in place.
+# It returns None as a result.
