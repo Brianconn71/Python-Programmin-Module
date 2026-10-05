@@ -35,12 +35,14 @@ def nested_sum(items):
         # using python built in method to ask if the iteration is a list or not.
         if isinstance(item, list):
             # if it is a list then we run the function again on the list argument.
-            # this will then 
+            # this will then rerun nested_sum with the item iteration as an argument.
             count += nested_sum(item)
         else:
+            # if item is now no longer a list we are expecting a number here so 
+            # count gets updated to be the running count plus the new value item.
+            # example 2 + 3 = 5
             count += item
     
+    # now return the total which in this case is the variable count and it will be the answer to the question.
     return  count
 
-if __name__ == "__main__":
-    nested_sum([1, [2, 3], [4, [5]]])
