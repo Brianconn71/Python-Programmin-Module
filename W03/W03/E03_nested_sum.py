@@ -27,12 +27,20 @@ def nested_sum(items):
     >>> nested_sum([[[[7]]]])
     7
     """
+    # initialize empty count variable which will hold a running total of the sum.
     count = 0
 
+    # Loop through the items in the input argument. 
     for item in items:
+        # using python built in method to ask if the iteration is a list or not.
         if isinstance(item, list):
+            # if it is a list then we run the function again on the list argument.
+            # this will then 
             count += nested_sum(item)
         else:
             count += item
     
     return  count
+
+if __name__ == "__main__":
+    nested_sum([1, [2, 3], [4, [5]]])
