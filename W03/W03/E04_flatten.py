@@ -27,19 +27,19 @@ def flatten(items):
     [7]
     """
     # new list initialized
-    out = []
+    output = []
 
     # loop through the items inside list argument
     for item in items:
         # if the item is a list
         if isinstance(item, list):
             # then take this list and run it back through the function again.
-            out += flatten(item)
+            output += flatten(item)
         else:
             # if its not a list, then we are adding the item to our newly created list
-            out.append(item)
+            output.append(item)
     # then we return the list.
-    return out
+    return output
 
 def flatten_extend(items):
     """Return a flat list of every number in items, in the order they appear.
@@ -60,14 +60,14 @@ def flatten_extend(items):
     [7]
     """
     # added in a new function to deal with extend method, same as above except
-    # we use recursion to send the list through the function while adding the whole list to the outpur.
-    out = []
+    # we use recursion to send the list through the function while adding the whole list to the output
+    output = []
 
     for item in items:
         if isinstance(item, list):
             # recurse first and then extend the flattened result.
-            out.extend(flatten_extend(item))
+            output.extend(flatten_extend(item))
         else:
-            out.append(item)
+            output.append(item)
 
-    return out
+    return output
