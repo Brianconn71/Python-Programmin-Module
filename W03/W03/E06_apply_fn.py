@@ -39,7 +39,10 @@ def apply_fn_to_list(fn, L):
     >>> apply_fn_to_list(len, [])
     []
     """
-    return  # YOUR CODE HERE
+    # basically, take a function added as input argument and call it on the list also added as an input argument.
+    # returns a list with the function having been called on the list before returning
+    # so, apply_fn_to_list(str.upper, ["ab", "cd"]) will call the Upper method on the list values changing from lower string to upper string.
+    return [fn(x) for x in L]
 
 
 def apply_fn_to_list_gen(fn, g):
