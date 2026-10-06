@@ -69,17 +69,22 @@ def deepest(node):
     >>> deepest(bicycle["children"][1])
     0
     """
-
+    # check if "children" is inside the node.
+    # if no then this means that its a single part
+    # That has nothing inside it so returns 0
     if "children" not in node:
         return 0
     
+    # Initialize an empty variable to store the count of the levels deep
     count = 0
 
+    # loop through each value in this node
     for value in node["children"]:
+        # using recursion, checks the value we are iterating over if it goes to a deeper level
         deepest_child = deepest(value)
+        # if it does go deeper then the depth needs to be added to the running total in count.
         if deepest_child > count:
+            # count will now hold the largest depth
             count = deepest_child
+    # count total gets tallied as its a level above the node.
     return  count + 1
-
-if __name__== "__main__":
-    deepest(bicycle)
