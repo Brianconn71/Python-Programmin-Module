@@ -76,10 +76,10 @@ def deepest(node):
     count = 0
 
     for value in node["children"]:
-        if deepest(value) > count:
-            count += deepest(value)
+        deepest_child = deepest(value)
+        if deepest_child > count:
+            count = deepest_child
+    return  count + 1
 
-    return  count
-
-if __name__: "__main__":
+if __name__== "__main__":
     deepest(bicycle)
