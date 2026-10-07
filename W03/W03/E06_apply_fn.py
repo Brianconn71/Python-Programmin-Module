@@ -68,6 +68,9 @@ def apply_fn_to_list_gen(fn, g):
 
     >>> [next(squares) for _ in range(6)]
     [0, 1, 4, 9, 16, 25]
+
+    >>> list(map(len, ["a", "bb", "ccc"]))
+    [1, 2, 3]
     """
     # Any def containing yield is a generator function. return hands back a list.
     # yield hands back one element, and the function pauses, to be resumed later.
@@ -91,3 +94,7 @@ def apply_fn_to_list_gen(fn, g):
 
 
 # ANSWER: (the QUESTION is at the top of this file)
+# The first function is eager due to it being a list comprehension and the function needs to build a list before it can return anything to user.
+# so if using naturals() which is endless as n has no limit so keeps expanding. Loop never reaches end so List can never be built.
+# The second function is lazy, doesnt build the list straight away. It produces one value pauses then resumes and decides which and how many values to take.
+
