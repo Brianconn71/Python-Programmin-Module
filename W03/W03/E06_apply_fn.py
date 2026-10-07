@@ -69,7 +69,13 @@ def apply_fn_to_list_gen(fn, g):
     >>> [next(squares) for _ in range(6)]
     [0, 1, 4, 9, 16, 25]
     """
-    return  # YOUR CODE HERE
+    # Any def containing yield is a generator function. return hands back a list.
+    # yield hands back one element, and the function pauses, to be resumed later.
+
+    # loop through the values in g
+    for x in g:
+        # then hands back a value pauses and then resumes after the yield
+        yield fn(x)
 
 
 # Python has both of these built in, as `map`. It is the lazy one: `map` returns
