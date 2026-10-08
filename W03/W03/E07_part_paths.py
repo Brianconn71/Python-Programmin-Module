@@ -90,11 +90,23 @@ def find_part(node, path):
         ...
     KeyError: 'bicycle/wheel/axle'
     """
-    try:
-        
-    except KeyError as e:
-        raise e
-    return  # YOUR CODE HERE
+    # creating a list of the input argument path string values split by /
+    # path_names will contain a list of the calues from path split where the / was.
+    path_names = path.split("/")
+    # current Node is the node / dictionary we are using as an input argument.
+    currentNode = node
 
-if __name__ == "__main__":
-    part_paths(bicycle["children"][0])
+    # Looping through the name values from our path but skipping the first value Bicycle
+    # because bicycle is at the root of the dictionary / path and no more values to be passed down from it.
+    for name in path_names[1:]:
+        # Children is a dict comprehension storing the name of the children parts as keys and there values as the value in the new dict.abs
+        # get will return an empty list if the key doesnt exist
+        children = {x["name"]: x for x in currentNode.get("children", [])}
+        # if this iteration name value is not in the newly created children dictionary
+        if name not in children:
+            # then we have an error and we raise the key error back to the user with the path value they have added as input.
+            raise KeyError(path)
+        # then current node is set as the value of the name value from the newly created children dictionary
+        currentNode = children[name]
+    # then we return this value to the user.
+    return currentNode
