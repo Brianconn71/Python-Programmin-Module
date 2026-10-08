@@ -53,17 +53,27 @@ def part_paths(node, prefix=""):
     >>> part_paths(bicycle["children"][1])
     ['frame']
     """
-    path = []
+    # Initialize a path variable with the prefix - which is passed down 
+    # it carries the path thats been created so far down the recursion.
+    # this is initialised as a string
+    path = prefix + node["name"]
 
+    # if there are children then its not a part we buy its a part we make
+    # so, we return the path sent to us as an argument back to the user.
+    # Path is stored as a string so we cover with square brackets to turn into a
+    # list object.
     if "children" not in node:
-        path =  path.append(node["name"])
-        return path
-    else:
-        for c in node["children"]:
-            name = node["name"] + part_paths(c)
-            return name
+        return [path]
 
-    return  
+    # another path variable for collecting paths handed down and stored
+    additionalPath = []
+
+    # for loop for all the values in the children list of dicts.
+    for value in node["children"]:
+        # adding the handed down path to list vvariable with the path in the input argument along with the value of the current path separated with a /
+        additionalPath += part_paths(value, path + "/")
+    # then, return this valeu to user.
+    return additionalPath
 
 
 def find_part(node, path):
@@ -80,6 +90,10 @@ def find_part(node, path):
         ...
     KeyError: 'bicycle/wheel/axle'
     """
+    try:
+        
+    except KeyError as e:
+        raise e
     return  # YOUR CODE HERE
 
 if __name__ == "__main__":
