@@ -116,8 +116,10 @@ def save_bom(bom, path):
     >>> round(unit_total(reloaded, key="cost"), 2)
     295.46
     """
-    return  # YOUR CODE HERE
-
-if __name__ == "__main__":
-    bom = load_bom("bicycle.json")
-    dearer = repriced(bom, "steel", 1.10)
+    # function is similar to loadbom above
+    # with open and w opens the file to write the contents to it
+    with open(path, "w") as f:
+        # then we dump the json data (bom) into the file we have opened (f)
+        # indent with 4 as it is asked to make the file human readable 
+        # without it the file would be just one long line
+        return json.dump(bom, f, indent=4)
