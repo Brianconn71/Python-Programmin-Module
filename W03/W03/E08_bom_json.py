@@ -75,18 +75,23 @@ def repriced(node, material, factor):
     # means that this is a part that we buy.
     # if there are children in this node then, parts will have no children as a key
     # jump over the if statements and run the list comprehension below calling repriced
-    # with the new item in the node children. 
+    # with the new item in the node children.
+    # this is the base case
     if "children" not in node:
         # is this part material equal to the material we are adding as an input argument?
         if node["material"] == material:
-            # if it is then we change the value of the field cost in the new dictionary to equal the value from the input dictionary times the factor input argument.
+            # if it is then we change the value of the field cost in the new dictionary
+            # To equal the value from the input dictionary times the factor input argument.
             new_node["cost"] = node["cost"] * factor
+        # The return the part regardless of if it was correct material or not to the new node dict.
         return new_node
 
-    
-
+    # This is where the recursion takes place, it is the recursive case
+    # Builds a new list object by calling repriced on every child
+    # returns a new copy of the reprice call on the child which may have additional dictionaries within it
     new_node["children"] =  [repriced(c, material, factor) for c in node["children"]]
 
+    # returning the newly created node as a dictionary.
     return  new_node
 
 
