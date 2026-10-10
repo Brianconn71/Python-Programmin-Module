@@ -36,7 +36,15 @@ def load_bom(filename):
     >>> round(unit_total(bom, key="cost"), 2)
     279.6
     """
-    return  # YOUR CODE HERE
+    # Creating a new variable file to hold the Path to the file already defined on line 13
+    # with the filename added by the user in this case bicycle.json
+    # A new filepath is created with the filename added and we can then find the file in our directory for working with.
+    file = DATA / filename
+
+    # Using with to open the json file and store as variable f
+    with open(file) as f:
+        # Using json.load method to read the json file into dicts and lists in this case.
+        return json.load(f)
 
 
 def repriced(node, material, factor):
@@ -60,6 +68,7 @@ def repriced(node, material, factor):
     >>> round(unit_total(bom, key="cost"), 2)
     279.6
     """
+    
     return  # YOUR CODE HERE
 
 
@@ -85,3 +94,6 @@ def save_bom(bom, path):
     295.46
     """
     return  # YOUR CODE HERE
+
+if __name__ == "__main__":
+    bom = load_bom("bicycle.json")
