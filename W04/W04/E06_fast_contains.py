@@ -237,3 +237,15 @@ if __name__ == "__main__":
 #   500 |    13.5    22.0 |    31.3    63.7 |    0.27    0.26
 #  2000 |    47.7    87.7 |   135.1   266.1 |    0.26    0.24
 # 8000 |   188.5   354.6 |   543.1  1018.6 |    0.26    0.25
+
+#   1. SimpleDict.py has no __contains__ method so python makes k in d work using the built in __iter__ method.
+#       essentially, loops through every key one at a time and it loops over every bucket even those empty
+#       it grows when 75% full so basically there is always more buckets than there are keys so its doing more work than required
+#   2. first two columns uses linear scan so __iter__ method for k in d. so Key on average is found halfway through a scan and loop stops, n/2 comparisons, 
+#       An absent key can only be confirmed after checking each key. so n comparisons and n is twice what n/2 is so absent take twice as long as present
+#       Third column is using __contains__ method so regardless of if key is present or not loop is ding the same thing i.e
+#       hashing, going to a bucket and checking the bucket. if a key is abseent it wont be in its bucket so no need to check anything else. so, 
+#       costs dont grow over time.
+#   3. __contains__ made it faster. in simpledict.py there was no __contain__ it was just hashing and it made no differenece without the __contains__
+#       because this is what makes in use hashing rather than iterating though it.
+
