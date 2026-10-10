@@ -68,8 +68,26 @@ def repriced(node, material, factor):
     >>> round(unit_total(bom, key="cost"), 2)
     279.6
     """
+    # creating an exact copy of the input node in a completely separate dictionary
+    # this way the original node stays the same and we can make changes to the new node.
+    new_node = dict(node)
+
+    # means that this is a part that we buy.
+    # if there are children in this node then, parts will have no children as a key
+    # jump over the if statements and run the list comprehension below calling repriced
+    # with the new item in the node children. 
+    if "children" not in node:
+        # is this part material equal to the material we are adding as an input argument?
+        if node["material"] == material:
+            # if it is then we change the value of the field cost in the new dictionary to equal the value from the input dictionary times the factor input argument.
+            new_node["cost"] = node["cost"] * factor
+        return new_node
+
     
-    return  # YOUR CODE HERE
+
+    new_node["children"] =  [repriced(c, material, factor) for c in node["children"]]
+
+    return  new_node
 
 
 def save_bom(bom, path):
@@ -97,3 +115,4 @@ def save_bom(bom, path):
 
 if __name__ == "__main__":
     bom = load_bom("bicycle.json")
+    dearer = repriced(bom, "steel", 1.10)
