@@ -39,6 +39,8 @@ def hops_from(successors, start):
     >>> hops_from(lambda n: {"a": "b", "b": "a"}[n], "a") == {"a": 0, "b": 1}
     True
     """
+    frontier = deque([start])
+    visited = {start: None}
     return  # YOUR CODE HERE
 
 
