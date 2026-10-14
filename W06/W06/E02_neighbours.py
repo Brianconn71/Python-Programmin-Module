@@ -57,7 +57,19 @@ def is_edge(graph, a, b):
     >>> is_edge(ROADS, "Dublin", "Galway")
     False
     """
-    return  # YOUR CODE HERE
+    # Use neighbours functionality to check if the graph input has 'a' as a value in it
+    # if it does then return the values for that node and store in nodeValues Variable
+    # in the case of dublin there will be an empty list returned which we will deal with in if statement below.
+    nodeValues = neighbours(graph, a)
+
+    # if the b value is in the nodeValues list we got from the neightbours function then
+    # return True, if it is not in it then just return False to user.
+    if b in nodeValues:
+        # return true if 'b' value has been found in the list
+        return True
+    else:
+        # return False if 'b' value has not been found
+        return False
 
 
 def degree(graph, node):
@@ -68,7 +80,11 @@ def degree(graph, node):
     >>> degree(RIVER_GRAPH, "LLLL")
     1
     """
-    return  # YOUR CODE HERE
+    # take the graph and node inputs and run them through the neighbours method
+    # this returns a list of the values inside the particular nodes dict or list
+    # this function asks for how many edges does a node have so all we need is the lenght of this list
+    nodeValuesList = neighbours(graph, node)
 
-if __name__ == "__main__":
-    neighbours(ROADS, "Galway")
+    # return the length of the list to the user which will show the length of the list we got from neighbours function
+    # and is equal to the amount of edges which a node has
+    return  len(nodeValuesList)
