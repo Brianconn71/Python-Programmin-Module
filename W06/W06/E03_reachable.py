@@ -73,4 +73,9 @@ def connected(successors, a, b):
     >>> connected(successors, "LLLL", "LLRR")
     False
     """
-    return  # YOUR CODE HERE
+    # hard  part is done above in reachable method
+    # Reachable takes in a start point so 'LLLL' and then runs the successors generator
+    # function on it and returns a set of values which we can get to from that start point
+    # So if we can get from input b to input a the following will return either true or false to the user
+    # reusing functions hence composition which is the aim of this file/exercise.
+    return b in reachable(successors, a)
