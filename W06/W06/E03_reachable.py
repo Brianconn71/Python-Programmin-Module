@@ -35,7 +35,30 @@ def reachable(successors, start):
     >>> sorted(reachable(lambda n: {"a": "b", "b": "a", "c": ""}[n], "c"))
     ['c']
     """
-    return  # YOUR CODE HERE
+    # This creates a Queue of the places not explored. so it will start with what we pass 
+    # to it a an input argument in place of start variable. deque is similar to a list but faster
+    frontier = deque([start])
+    # Creates a set of every state that has been seen. starts off with the stating point which
+    # is the start argument sent by the user as this will have been visited and should not be added again,
+    # Sets take in unique values with no duplictes so if we later travel through clifden twice it 
+    # will only get added once.
+    visited = set([start])
+
+    # keep looping while queue is not empty
+    while frontier:
+        # First in first out, popleft will take the oldest state off front of queue
+        # essentially, all states 1 move away get prioritised over those 2 moves away
+        state = frontier.popleft()
+        # successors is a generator function, loops over the value which is one move away from this state.
+        for nxt in successors(state):
+            # if we have not yet visited this state - it wont be in visited.
+            if nxt not in visited:
+                # then we will add this syaye/neighbour to the viited set
+                visited.add(nxt)
+                # and finally put it back on the queue
+                frontier.append(nxt)
+    # once the queue is empty we have then visited everywhere we need to so we now return this set to the user.
+    return visited
 
 
 def connected(successors, a, b):
