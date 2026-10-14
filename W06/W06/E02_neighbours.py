@@ -27,7 +27,24 @@ def neighbours(graph, node):
     >>> neighbours(ROADS, "Dublin")
     []
     """
-    return  # YOUR CODE HERE
+    # Using a try except block to catch KeyErrors and if keyerror arises it will return an empty list.
+    try:
+        # New list to store the vales from the input graph once we are looping through its contents values get stored here
+        nodeValuesList = []
+        # if the node actually appears in the graph given as input, if it doesnt the except block will capture the keyerror
+        # and return an empty list in its place.
+        if node in graph:
+            # loop through the values of our graph based on the input node as we know its in the graph itself.
+            # using sorted here to sort the values of the dict/list in place before we append the value to the new list created
+            for value in sorted(graph[node]):
+                # Now, we take the value from the inner graph(dict(keys)/list(values)) and append to the new list 
+                nodeValuesList.append(x)
+    # Deals with keyerrors, as in input values which don't appear in the graph provided.
+    except KeyError:
+        # return an empty list rather than a KeyError
+        return []
+    # Once the function has finished looping and the new list has its values, we then return this to the user
+    return  nodeValuesList
 
 
 def is_edge(graph, a, b):
@@ -52,3 +69,6 @@ def degree(graph, node):
     1
     """
     return  # YOUR CODE HERE
+
+if __name__ == "__main__":
+    neighbours(ROADS, "Galway")
