@@ -38,7 +38,7 @@ def neighbours(graph, node):
             # using sorted here to sort the values of the dict/list in place before we append the value to the new list created
             for value in sorted(graph[node]):
                 # Now, we take the value from the inner graph(dict(keys)/list(values)) and append to the new list 
-                nodeValuesList.append(x)
+                nodeValuesList.append(value)
     # Deals with keyerrors, as in input values which don't appear in the graph provided.
     except KeyError:
         # return an empty list rather than a KeyError
