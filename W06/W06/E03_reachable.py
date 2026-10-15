@@ -49,11 +49,11 @@ def reachable(successors, start):
         # First in first out, popleft will take the oldest state off front of queue
         # essentially, all states 1 move away get prioritised over those 2 moves away
         state = frontier.popleft()
-        # successors is a generator function, loops over the value which is one move away from this state.
+        # successors gives the states one move away
         for nxt in successors(state):
             # if we have not yet visited this state - it wont be in visited.
             if nxt not in visited:
-                # then we will add this syaye/neighbour to the viited set
+                # then we will add this staye/neighbour to the viited set
                 visited.add(nxt)
                 # and finally put it back on the queue
                 frontier.append(nxt)
