@@ -74,11 +74,18 @@ def farthest_hops(successors, start):
     >>> farthest_hops(lambda town: ROADS[town], "Galway")
     4
     """
+    # One line composition
+    # using the hops_fromfunction to return a dictionary of how far away all the states are from the original state added as an input 
+    # argument to hops_from function.
+    # then, we need to get the state which is hardest to reach from the start which will have the highest integer value next to the key as a key/value pair
+    # Each new states value is one more than the state it has been reached from so the most difficult destination to reach should always have the hisghest value.
     return  max(hops_from(successors, start).values())
 
 
-if __name__ == "__main__":
-    hops_from(successors, START)["RRRR"]
-    farthest_hops(successors, START)
-
 # ANSWER: (the QUESTION is at the top of this file)
+# In this case it is safe because BFS checks in the order of distance, basically every state which is one move away from the start state gets taken off the queue first
+# before a state which is two away etc. So, the first time that BFS reaches a state it will have come by fewest moves as every move counts for 1
+# so its the shortest distance and doesnt change.
+# Using minutes then roads would have different lengths whichmeans a route (Galway to Roundstone - BFS reaches it via spiddal first and records 105 mins, however, the quickest route is 70 via Oughterard and Recess) 
+# with fewest roads does not mean it takjes the quickest time. BFS records the minutes for the route it reaches first and wouldn't update this. if we want to find the quickets route based on time and not roads then
+# we would need to use weighting and this needs a dijksta algorthim as it would check cheapest (in terms of time) and updates it when a cheaper route is found.
