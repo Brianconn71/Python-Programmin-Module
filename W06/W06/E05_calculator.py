@@ -61,7 +61,8 @@ def presses(target):
     >>> presses(100)
     [0, 2, 4, 12, 36, 34, 102, 100]
     """
-    return  # YOUR CODE HERE
+    start = 0
+    return bfs(calc_successors, start, target)
 
 
 def fewest_presses(target):
@@ -74,7 +75,7 @@ def fewest_presses(target):
     >>> fewest_presses(0)
     0
     """
-    return  # YOUR CODE HERE
+    return  len(presses(target)) - 1
 
 
 # ANSWER: (the QUESTION is at the top of this file)
