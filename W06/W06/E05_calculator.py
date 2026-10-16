@@ -88,3 +88,6 @@ def fewest_presses(target):
 
 
 # ANSWER: (the QUESTION is at the top of this file)
+# The frontier continues growing due to the amount of states that need to be explored, the came_from dictionary also continues to grow because it will be storing all the states we have already seen
+# every number will have three buttons it can press so every state has three possible successors, so every level of search could be three times bigger than the last and three times more numbers of states, 3^d after n presses which would mean exp[onential growth
+# BFS will skip numbers already seen so it will be close to doubling every level, and it will have to explore every state at further depths until it reaches its target value so 100 has 7 presses which has minimal states however the bigger the value the more presses required which will double the work required by the function.
