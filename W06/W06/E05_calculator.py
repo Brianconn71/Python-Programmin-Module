@@ -61,7 +61,12 @@ def presses(target):
     >>> presses(100)
     [0, 2, 4, 12, 36, 34, 102, 100]
     """
+    # start state is always 0 so define this as variable start
     start = 0
+    # using the imported function defined above from river exercise - bfs
+    # passing to bfs - breadth first search, the starting state of 0, the target which is where we want to finish
+    # and the calc_successors function passed without brackets, 
+    # bfs then receives the calc_successors function from this fille and will use it to find the next three numbers from what it is currently at
     return bfs(calc_successors, start, target)
 
 
@@ -75,6 +80,10 @@ def fewest_presses(target):
     >>> fewest_presses(0)
     0
     """
+    # output of this function is due to be an integer value
+    # using the presses function above which will return a list of stops a calculator makes until it reaches our target value
+    # we then take the length of this list and minus 1 as start state will always be added to the list as a 0 value which is not included as a pressed button
+    # fewest_presses(0) will work and return 0 as there is 1 item in the list so len - 1 is equal to 0.
     return  len(presses(target)) - 1
 
 
