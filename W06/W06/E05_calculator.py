@@ -31,6 +31,8 @@ bottom.
 from E01_river import bfs
 
 
+# A calculator has only 3 buttons. The first multiplies the current value by 3, the second adds 2 and the third subtracts 2
+
 def calc_successors(n):
     """Yield the three numbers one button press away from `n`.
 
@@ -39,7 +41,16 @@ def calc_successors(n):
     >>> list(calc_successors(0))
     [0, 2, -2]
     """
-    return  # YOUR CODE HERE
+    # as commented on line 34 calculator has three buttons, 
+    # we are using yield to return all of the requirements of the function one at a time
+    # this then pauses and bfs works out the numbers we are asking for
+
+    # button 1 multiplies input by 3
+    yield n * 3
+    # button 2 adds 2 to the number
+    yield n + 2
+    # button 3 subtracts 2 from the number
+    yield n - 2
 
 
 def presses(target):
