@@ -64,7 +64,9 @@ def quickest_times(start):
     >>> quickest_times("Clifden")["Galway"]
     72
     """
-    return  # YOUR CODE HERE
+    quickest_route = {}
+    return  quickest_route
 
 if __name__ == "__main__":
-    time_lost("Galway", "Galway")
+    times = quickest_times("Galway")
+    print(times["Clifden"])
