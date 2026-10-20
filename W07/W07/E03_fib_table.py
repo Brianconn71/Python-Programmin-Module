@@ -18,7 +18,18 @@ def fib_table(n):
     >>> fib_table(35)
     9227465
     """
-    return  # YOUR CODE HERE
+    # fibonacci sequence starts with 0 & 1 and builds up
+    # start the fibonacci table with the first two fibonacci numbers.
+    fibonacci = [0, 1]
+
+    # Now start the loop from two and go to the end of the input
+    # we need to add + 1 to input or it will stop one place short
+    for i in range(2, n +1):
+        # now we append the add the two previous numbers to get the next value for the list and add it to the end using append
+        fibonacci.append(fibonacci[i - 1] + fibonacci[i - 2])
+    # return the final value in the list fibonacci which answers the question
+    # Return the nth Fibonacci number
+    return  fibonacci[n]
 
 
 def fib_pair(n):
@@ -37,3 +48,6 @@ def fib_pair(n):
 # `fib_table` holds n numbers to return one. `fib_pair` holds two. This is the
 # same saving we make for edit distance in E05, one dimension down: look at the
 # recurrence, see how far back it actually reaches, and keep only that much.
+
+if __name__ == "__main__":
+    fib_table(35)
