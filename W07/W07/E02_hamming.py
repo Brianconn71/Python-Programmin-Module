@@ -27,7 +27,7 @@ def hamming(a, b):
     # so zip("Brian", "Matt") will be ('B', 'M') etc etc for each letter, 
     # zip will stop at the end of the shorter string so any extra letters, values from the longer string get ignored,
     # hence the "ignore extra tail", x != y asks are thepairs different
-    # which tehn will return a list of boolean values which will be true if values were same  and false if not
+    # which then will return a list of boolean values which will be true if values were same  and false if not
     # sum then sums the true values (1's) and returns the answer
     return sum([x != y for x , y in zip(a,b)])
 
@@ -44,7 +44,10 @@ def hamming_padded(a, b):
     >>> hamming_padded("abc", "")
     3
     """
-    return  # YOUR CODE HERE
+    # essentially, works the same way as the hamming function above,
+    # only difference is zip_longest which is used to stop at the end of the longest string rather than shortest string
+    # this pads the shorter string with None so that every unmatched item is a difference.
+    return sum([x != y for x, y in zip_longest(a,b)])
 
 
 # `zip` stops at the shorter of the two, so `hamming` silently ignores
@@ -53,5 +56,3 @@ def hamming_padded(a, b):
 # `itertools.zip_longest` pads the shorter one with None instead, and None
 # equals nothing, so every unmatched item counts as a difference.
 
-if __name__ == "__main__":
-    hamming("ACGTACGTAC", "ACGTTCGTAC")
