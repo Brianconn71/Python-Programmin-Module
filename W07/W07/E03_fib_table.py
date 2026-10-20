@@ -42,7 +42,13 @@ def fib_pair(n):
     >>> all(fib_pair(i) == fib_table(i) for i in range(50))
     True
     """
-    return  # YOUR CODE HERE
+    # setup first two numbers of fibonacci sequesnce as 0 & 1
+    a, b = 0, 1
+    # I won't be using the loop variable inside the loop so using _ 
+    # I need Loop to loop n times
+    for _ in range(n):
+        a, b = b, a + b
+    return a
 
 
 # `fib_table` holds n numbers to return one. `fib_pair` holds two. This is the
@@ -50,4 +56,4 @@ def fib_pair(n):
 # recurrence, see how far back it actually reaches, and keep only that much.
 
 if __name__ == "__main__":
-    fib_table(35)
+    fib_pair(35)
