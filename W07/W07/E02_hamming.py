@@ -22,7 +22,14 @@ def hamming(a, b):
     >>> hamming("ACGTACGTAC", "CGTACGTACA")
     10
     """
-    return  # YOUR CODE HERE
+    # Writing the hamming function as seen in lecture
+    # zip(a,b) - basically will pair up the inputs added by user which are in same position
+    # so zip("Brian", "Matt") will be ('B', 'M') etc etc for each letter, 
+    # zip will stop at the end of the shorter string so any extra letters, values from the longer string get ignored,
+    # hence the "ignore extra tail", x != y asks are thepairs different
+    # which tehn will return a list of boolean values which will be true if values were same  and false if not
+    # sum then sums the true values (1's) and returns the answer
+    return sum([x != y for x , y in zip(a,b)])
 
 
 def hamming_padded(a, b):
@@ -45,3 +52,6 @@ def hamming_padded(a, b):
 # lecture said Hamming cannot compare sequences of different lengths at all.
 # `itertools.zip_longest` pads the shorter one with None instead, and None
 # equals nothing, so every unmatched item counts as a difference.
+
+if __name__ == "__main__":
+    hamming("ACGTACGTAC", "ACGTTCGTAC")
