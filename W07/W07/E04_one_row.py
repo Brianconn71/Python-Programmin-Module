@@ -39,4 +39,39 @@ def levenshtein_row(a, b):
     >>> all(levenshtein_row(a, b) == levenshtein(a, b) for a, b in pairs)
     True
     """
-    return  # YOUR CODE HERE
+    X = [[0] * (len(b) + 1) for _ in range(len(a)+1)]
+    for i in range(len(a) + 1):
+        X[i][0] = i
+    for j in range(len(a) + 1):
+        X[0][j] = j
+    for i in range(1, len(a) + 1):
+        for j in range(1, len(b) + 1):
+            cost = 0 if a[i -1] == b[j - 1] else 1
+            X[i][j] = min(X[i - 1][j] + 1,
+                            X[i][j-1] +1,
+                            )
+        
+    return  
+
+
+def levenshtein_row_from_E1(a, b):
+    """Edit distance, holding only two rows at a time.
+
+    >>> levenshtein_row_from_E1("kitten", "sitting")
+    3
+    >>> levenshtein_row_from_E1("ACGTACGTAC", "CGTACGTACA")
+    2
+    >>> levenshtein_row_from_E1("", "abc")
+    3
+    >>> levenshtein_row_from_E1("abc", "abc")
+    0
+    >>> levenshtein_row_from_E1("", "")
+    0
+
+    It must agree with the lecture's table version everywhere:
+
+    >>> pairs = [("kitten", "sitting"), ("flaw", "lawn"), ("", "abc")]
+    >>> all(levenshtein_row_from_E1(a, b) == levenshtein(a, b) for a, b in pairs)
+    True
+    """
+    return  levenshtein(a, b)
