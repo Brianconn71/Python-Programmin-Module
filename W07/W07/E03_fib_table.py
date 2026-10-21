@@ -45,9 +45,14 @@ def fib_pair(n):
     # setup first two numbers of fibonacci sequesnce as 0 & 1
     a, b = 0, 1
     # I won't be using the loop variable inside the loop so using _ 
-    # I need Loop to loop n times
+    # I need Loop to loop n times withoput using the value within the loop
     for _ in range(n):
+        # for every loop move a and b numbers forward
+        # a becomes the new value of old b 
+        # b becomes the value of old a + old b
+        # right hand side of the variable is calculate before assigning the new values
         a, b = b, a + b
+    # Once the loop has finished return value a which will hold the nth fibonacci number
     return a
 
 
