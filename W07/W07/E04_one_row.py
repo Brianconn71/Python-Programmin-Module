@@ -39,9 +39,15 @@ def levenshtein_row(a, b):
     >>> all(levenshtein_row(a, b) == levenshtein(a, b) for a, b in pairs)
     True
     """
+    # using levenshtein_row("hat", "bat") as an example here
+    # below variable prevValue is used to build the top row, b is "bat"
+    # so, len(b) + 1 = 4 so essevtially range is going to be [0 ,1, 2, 3]
     prevValue = list(range(len(b) + 1))
 
+    # Loops through the letters in a input, in this case a = "hat"
+    # so, len(a) + 1 = 4, eacxh separate loop will build a new row
     for i in range(1, len(a)+ 1):
+        # make a new row with loop value i as the first cell
         currentValue = [i]
         for j in range(1, len(b) + 1):
             cost = 0 if a[i - 1] == b[j - 1] else 1
@@ -78,4 +84,4 @@ def levenshtein_row_from_E1(a, b):
     return  levenshtein(a, b)
 
 if __name__ == "__main__":
-    levenshtein_row("abc", "abc")
+    levenshtein_row("hat", "bat")
