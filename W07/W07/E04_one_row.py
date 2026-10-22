@@ -48,15 +48,29 @@ def levenshtein_row(a, b):
     # so, len(a) + 1 = 4, eacxh separate loop will build a new row
     for i in range(1, len(a)+ 1):
         # make a new row with loop value i as the first cell
+        # so, currentValue on first iteration = 1
         currentValue = [i]
+        # loop through the row one cell at a time for letter in b
+        # so j will turn 1,2,3 in this example
         for j in range(1, len(b) + 1):
+            # are the two letters matching, in first iteration case 
+            # a[i - 1] = a[0] = h and b[j - 1] = b[0] = b
+            # so in first iteration case they do not match so cost = 1
             cost = 0 if a[i - 1] == b[j - 1] else 1
+            # .append adds value to end of row list and min() takes the smallest value
+            # prevValue[j] is the cell in the finished row above
+            # currentValue[j - 1] is the cell to the left
+            # prevValue[j - 1] is the cell diagonally to the left
             currentValue.append(min(
                 prevValue[j] + 1,
                 currentValue[j - 1] + 1,
                 prevValue[j - 1] + cost
             ))
+        # the row will have now been finished so the prevValue now becomes the list row above for the next iteration of a
+        # this line is used to help maintain memory at two rows.
         prevValue = currentValue
+    # at the end of the function the prevValue will contain the bottom row of values and [-1] will return the last value from the list
+    # which is the bottom right value in the row and the edit distance between words.
     return prevValue[-1]
    
 
@@ -81,6 +95,7 @@ def levenshtein_row_from_E1(a, b):
     >>> all(levenshtein_row_from_E1(a, b) == levenshtein(a, b) for a, b in pairs)
     True
     """
+    # using example from the W7E1 file for Levenshtein
     return  levenshtein(a, b)
 
 if __name__ == "__main__":
