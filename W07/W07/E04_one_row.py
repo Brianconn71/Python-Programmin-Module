@@ -39,6 +39,19 @@ def levenshtein_row(a, b):
     >>> all(levenshtein_row(a, b) == levenshtein(a, b) for a, b in pairs)
     True
     """
+    prevValue = list(range(len(b) + 1))
+
+    for i in range(1, len(a)+ 1):
+        currentValue = [i]
+        for j in range(1, len(b) + 1):
+            cost = 0 if a[i - 1] == b[j - 1] else 1
+            currentValue.append(min(
+                prevValue[j] + 1,
+                currentValue[j - 1] + 1,
+                prevValue[j - 1] + cost
+            ))
+        prevValue = currentValue
+    return prevValue[-1]
    
 
 
