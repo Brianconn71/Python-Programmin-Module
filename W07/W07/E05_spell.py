@@ -35,13 +35,25 @@ def suggest(word, words, n=3):
     >>> suggest("cat", [])
     []
     """
-    r = {}
-    for x in words:
-        r[x] = levenshtein(word, x)
-    sorted(r, key=r.get)
-    print(r)
+    # initialize a variable to store words based in as a key and then the levenshtein distance value as the value
+    # storing as a dictionary
+    temp_dict = {}
 
-    return []
+    # Loop through the values in the WORDS input list
+    for value in words:
+        # Calling the levenshtein fucntion from e1 to calculate the editing distance from the word
+        # added as input to function with the WORDS list stored in file.
+        # then, we store this as a key pair value in out new dictionary to be used for sorting later
+        temp_dict[value] = levenshtein(word, value)
+
+    # Sort the keys in the dict, to do this we run sorted method on the temp_dict
+    # and we use the key for sorting as a lambda function which returns a tuple of the word itself and its distance then python looks inside the tuple and compares the items
+    # if first items are different then smaller distance comes first and if equal then sort by words themselves so bat will come ahead of car in this instance.
+    sortedDictKeys = sorted(temp_dict, key=lambda keyValue: (temp_dict[keyValue], keyValue))
+
+    # finally, return a liced list with the n value added as input to the function
+    # this will return the values from the list up to the n value so if n = 3 then return list [0, 1, 2]
+    return sortedDictKeys[:n]
 
 if __name__ == "__main__":
     suggest("cet", WORDS)
