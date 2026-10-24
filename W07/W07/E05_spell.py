@@ -35,7 +35,15 @@ def suggest(word, words, n=3):
     >>> suggest("cat", [])
     []
     """
-    return  # YOUR CODE HERE
+    r = {}
+    for x in words:
+        r[x] = levenshtein(word, x)
+    sorted(r, key=r.get)
+    print(r)
 
+    return []
+
+if __name__ == "__main__":
+    suggest("cet", WORDS)
 
 # ANSWER: (the QUESTION is at the top of this file)
