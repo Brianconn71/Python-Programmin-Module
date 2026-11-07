@@ -67,10 +67,18 @@ def times_table(n):
     >>> times_table(5)[4, 4]
     25
     """
-    A = np.arange(1, n +1)
-    b = A.reshape(-1, 1)
-    c = A * b
-    return c
+    # make a 1-d array from value 1 up to the end of the n input range plus 1
+    # the +1 is necessary due to stopping 1 value from the end
+    rowOfRangeValues = np.arange(1, n +1)
+    # now take this new range of values and reshape them from a row to a column
+    # -1 = work out how many rows and 1 = one column
+    reshapeRange = rowOfRangeValues .reshape(-1, 1)
+    # multiply the rows of range values and the row reshaped as a column
+    # shapes dont match but Numpy uses broadcasting stretches row and column across
+    # then multiplies
+    table = rowOfRangeValues  * reshapeRange
+    # return the finished table
+    return table
 
 
 if __name__ == "__main__":
