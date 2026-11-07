@@ -30,7 +30,7 @@ def column_range(df, name):
     # getting the smallest value in the column using min method on dataframe
     # wrapping in float() due to some issues with doctest and numpy version.
     smallest = float(df[name].min())
-    # getting the biggest value in the column using min method on dataframe
+    # getting the max value in the column using min method on dataframe
     # wrapping in float() due to some issues with doctest and numpy version.
     largest = float(df[name].max())
     return (smallest, largest)
@@ -64,7 +64,7 @@ def spread(df, name):
     >>> spread(PENGUINS, "mass_g")
     989.57
     """
-    # getting the standard deviation value of a column in the dataframe using mean method
+    # getting the standard deviation value of a column in the dataframe using std method
     # using native round python method to round to two places
     # wrapping in float() due to some issues with doctest and numpy version.
     standard_dev = float(round(df[name].std(), 2))
