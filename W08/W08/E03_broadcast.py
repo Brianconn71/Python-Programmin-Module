@@ -18,6 +18,10 @@ Answer in the comment at the bottom.
 """
 import numpy as np
 
+# Needed to add this line as was having issues with numpy versions
+# I had numpy 2.5 installed, newer numpy does not need np.int64(1)
+np.set_printoptions(legacy="1.25")
+
 
 def combine(A, b, c, d):
     """Build the table z, where
@@ -40,7 +44,15 @@ def combine(A, b, c, d):
     array([[  2.,   3., 104.],
            [ 15.,  16., 117.]])
     """
-    return  # YOUR CODE HERE
+    # A is the full shape, full table it has rows and columns
+    # b.reshape(-1, 1) turns b into correct format of  (n, 1) for rows and columns, -1 is lazy and asks to work out columns for it
+    # c has a shape of (4,) which Numpy treats as a row, c[j] is in column [j]and numpy copies this down all n rows
+    # d is a single number which then gets added to each cell
+    # using this z then gets A[i, j] + b[i] + c[j] + d, if b was not reshapen then 
+    # b would be added as columns instead of rows 
+    z = A + b.reshape(-1, 1)+ c + d
+    # Once z is correct we return to user 
+    return z
 
 
 def times_table(n):
@@ -55,7 +67,13 @@ def times_table(n):
     >>> times_table(5)[4, 4]
     25
     """
-    return  # YOUR CODE HERE
+    A = np.arange(1, n +1)
+    b = A.reshape(-1, 1)
+    c = A * b
+    return c
 
+
+if __name__ == "__main__":
+    times_table(3)
 
 # ANSWER: (the QUESTION is at the top of this file)
