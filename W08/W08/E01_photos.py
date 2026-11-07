@@ -16,6 +16,10 @@ from time import perf_counter
 import matplotlib.pyplot as plt
 import numpy as np
 
+# Needed to add this line as was having issues with numpy versions
+# I had numpy 2.5 installed, newer numpy does not need np.int64(1)
+np.set_printoptions(legacy="1.25")
+
 DATA = Path(__file__).parent / "data"
 
 B = 4              # bins per colour channel, so B ** 3 bins in total
