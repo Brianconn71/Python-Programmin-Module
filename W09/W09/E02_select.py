@@ -30,7 +30,11 @@ def column_list(df, name):
     >>> column_list(PENGUINS, "mass_g")
     [3750.0, 3250.0, 4500.0, 5700.0, 3500.0]
     """
-    return  # YOUR CODE HERE
+    # use the input column name on the inut dataframe to select the column in the dataframe
+    # then, use.to_list method on the dataframe column to turn it into a python list
+    col_to_list = df[name].to_list()
+    # return this python list to the user
+    return  col_to_list
 
 
 def heavier_than(df, grams):
@@ -48,4 +52,12 @@ def heavier_than(df, grams):
     >>> len(heavier_than(PENGUINS, 10000))
     0
     """
-    return  # YOUR CODE HERE
+    # use the input grams argument from user as a conditional on the dataframe column mass_g
+    # this will be similar to a loop and compare the grams input against the values in the column and the result heavy will be a pandas series
+    # of boolean logic, True or False
+    heavy = df["mass_g"] > grams
+    # then, use the pandas series on the actual dataframe to return values to user which are heavier than the grams argument.
+    return df[heavy]
+
+if __name__ == "__main__":
+    heavier_than(PENGUINS, 4000)["species"].tolist()
