@@ -65,6 +65,9 @@ import matplotlib
 matplotlib.use("Agg")           # write a file; never open a window
 import matplotlib.pyplot as plt
 import numpy as np
+# Needed to add this line as was having issues with numpy versions
+# I had numpy 2.5 installed, newer numpy does not need np.int64(1)
+np.set_printoptions(legacy="1.25")
 import pandas as pd
 from scipy.spatial.distance import cdist
 from sklearn.base import BaseEstimator, ClassifierMixin
