@@ -9,6 +9,7 @@ No output means every test passed.
 
 import pandas as pd
 
+
 # Given: the same tiny table as E02.
 PENGUINS = pd.DataFrame({
     "species": ["Adelie", "Adelie", "Gentoo", "Gentoo", "Chinstrap"],
@@ -26,7 +27,13 @@ def column_range(df, name):
     >>> column_range(PENGUINS, "bill_mm")
     (39.1, 50.0)
     """
-    return  # YOUR CODE HERE
+    # getting the smallest value in the column using min method on dataframe
+    # wrapping in float() due to some issues with doctest and numpy version.
+    smallest = float(df[name].min())
+    # getting the biggest value in the column using min method on dataframe
+    # wrapping in float() due to some issues with doctest and numpy version.
+    largest = float(df[name].max())
+    return (smallest, largest)
 
 
 def column_mean(df, name):
@@ -37,7 +44,12 @@ def column_mean(df, name):
     >>> column_mean(PENGUINS, "bill_mm")
     44.4
     """
-    return  # YOUR CODE HERE
+    # getting the mean value of a column in the dataframe using mean method
+    # using native round python method to round to two places
+    # wrapping in float() due to some issues with doctest and numpy version.
+    mean_value = float(round(df[name].mean(), 2))
+    # returning the mean value.
+    return mean_value
 
 
 def spread(df, name):
@@ -52,4 +64,9 @@ def spread(df, name):
     >>> spread(PENGUINS, "mass_g")
     989.57
     """
-    return  # YOUR CODE HERE
+    # getting the standard deviation value of a column in the dataframe using mean method
+    # using native round python method to round to two places
+    # wrapping in float() due to some issues with doctest and numpy version.
+    standard_dev = float(round(df[name].std(), 2))
+    # returning the standard deviation value.
+    return standard_dev
