@@ -39,7 +39,10 @@ def softplus(x):
     >>> np.round(softplus(np.array([-2.0, 0.0, 2.0, 5.0])), 3)
     array([0.127, 0.693, 2.127, 5.007])
     """
-    return  # YOUR CODE HERE
+    # Use the Numpy exp function to get the exponential of input x
+    exponent_x = np.exp(x)
+    # Then get the log value of 1 + the exponent and return to user
+    return  np.log(1 + exponent_x)
 
 
 # Given: the plot. Notice that it never loops: linspace makes 200 x values,
