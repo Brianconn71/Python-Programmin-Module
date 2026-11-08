@@ -30,7 +30,9 @@ def group_sizes(df, by):
     >>> group_sizes(PENGUINS, "island") == {"Biscoe": 3, "Dream": 2}
     True
     """
-    return  # YOUR CODE HERE
+    count_of_values_in_column = df[by].value_counts()
+    rows_in_group = count_of_values_in_column.to_dict()
+    return rows_in_group
 
 
 def group_means(df, by, column):
@@ -43,4 +45,9 @@ def group_means(df, by, column):
     ...                                                "Dream": 42.8}
     True
     """
+    means_in_column = df[by].mean()
     return  # YOUR CODE HERE
+
+if __name__ == "__main__":
+    group_sizes(PENGUINS, "species") == {"Adelie": 2, "Chinstrap": 1,"Gentoo": 2}
+    group_means(PENGUINS, "species", "mass_g") == {"Adelie": 3500.0,"Chinstrap": 3500.0, "Gentoo": 5100.0}
