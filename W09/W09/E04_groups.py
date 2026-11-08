@@ -45,8 +45,9 @@ def group_means(df, by, column):
     ...                                                "Dream": 42.8}
     True
     """
-    means_in_column = df[by].mean()
-    return  # YOUR CODE HERE
+    grouping = df.groupby(by)
+    rp = grouping[column].mean().round(1).to_dict()
+    return rp
 
 if __name__ == "__main__":
     group_sizes(PENGUINS, "species") == {"Adelie": 2, "Chinstrap": 1,"Gentoo": 2}
