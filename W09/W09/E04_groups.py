@@ -30,8 +30,11 @@ def group_sizes(df, by):
     >>> group_sizes(PENGUINS, "island") == {"Biscoe": 3, "Dream": 2}
     True
     """
+    # get the unique values from the input dataframe in the input by column
     count_of_values_in_column = df[by].value_counts()
+    # then convert this pandas series to a python dictionary
     rows_in_group = count_of_values_in_column.to_dict()
+    # return the dictionary to the user
     return rows_in_group
 
 
@@ -45,9 +48,12 @@ def group_means(df, by, column):
     ...                                                "Dream": 42.8}
     True
     """
+    # group the by columns of the dataframe 
     grouping = df.groupby(by)
-    rp = grouping[column].mean().round(1).to_dict()
-    return rp
+    # use the groupings to get the mean value of the column input rounded to 1 decimal place and then transform this to a python dictionary for output.
+    mean_values = grouping[column].mean().round(1).to_dict()
+    # return this dictionary to the user
+    return mean_values
 
 if __name__ == "__main__":
     group_sizes(PENGUINS, "species") == {"Adelie": 2, "Chinstrap": 1,"Gentoo": 2}
