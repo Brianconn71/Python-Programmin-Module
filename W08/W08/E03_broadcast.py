@@ -85,3 +85,8 @@ if __name__ == "__main__":
     times_table(3)
 
 # ANSWER: (the QUESTION is at the top of this file)
+# Numpy broadcasting lines up the shapes of the arrays from the right, so a 1-D array similar to c with a shape of (n,) is treated like a row with shape (1, n)
+# Therefore, c needs to be added with columns so that c[j] will actually go into column j it then matches the columns of A(n, m) and numpy copies that row to all other n rows, so reshape is not needed.
+# b then needs to be added along the rows so that b[i] will go into the row i, b already has shape of (n,) so numpy treats it as a row and lines it up with the m column which is incorrect so, b.reshape(-1,1)
+# turns b into a column shaped (n, 1) which is then lined up with the rows of A and numpy copies it across all m columns. If b was not reshapen then when n does not equal m the shapes (n,m) and (n,)
+# do not match and results in a numpy error. When n does equal m for example in the 4x4 example then it wouldnt throw an error but it would silemtly add b alongside the columns giving the wrong answer.
