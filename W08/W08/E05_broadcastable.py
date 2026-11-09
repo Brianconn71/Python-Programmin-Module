@@ -17,6 +17,9 @@ So (4, 1) and (1, 4) are fine, and so are (3, 5) and (5,), but (3, 5) and
 Write the rule out yourself. You only need the shapes, never the values.
 """
 import numpy as np
+# Needed to add this line as was having issues with numpy versions
+# I had numpy 2.5 installed, newer numpy does not need np.int64(1)
+np.set_printoptions(legacy="1.25")
 
 
 def is_broadcastable(X, Y):
@@ -33,5 +36,14 @@ def is_broadcastable(X, Y):
     >>> is_broadcastable(np.zeros((2, 3)), np.zeros((4, 3)))
     False
     """
-    return  # YOUR CODE HERE
+    r = X.shape
+    u = Y.shape
+    g = X[::-1]
+    m = Y[::-1]
+    for c,v in zip(g,m):
+        if g != m or g != 1 or m !=1:
+            return False
+    return True
 
+if __name__ == "__main__":
+    is_broadcastable(np.zeros((3, 5)), np.zeros(3))
