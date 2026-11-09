@@ -44,7 +44,14 @@ def values_above(x, t):
     >>> values_above(x, 4)
     array([5, 9])
     """
-    return  # YOUR CODE HERE
+    # Compare the values in the np array x to the value t and check if the value in the array is greater than t
+    # works as another way of looping like in python
+    compareEntries = x > t
+    # compareEntries will return an array of boolean values which we can then use as a mask on the original afrray and return the values that were set as true
+    # keeps entires in original array marked as true and removes those marked as false
+    # we then return this to the user.
+    return x[compareEntries]
+
 
 
 def column_means(X):
@@ -56,7 +63,10 @@ def column_means(X):
     >>> column_means(np.array([[10.0, 20.0]]))
     array([10., 20.])
     """
-    return  # YOUR CODE HERE
+    # using the numpy mean functionality on the input X array with axis=0 (columns) - squeezes down rows to leave one value per column
+    # in order to return the mean of each column
+    return X.mean(axis=0)
+    
 
 
 def row_maxes(X):
@@ -68,8 +78,13 @@ def row_maxes(X):
     >>> row_maxes(np.array([[-1.0, -5.0]]))
     array([-1.])
     """
-    return  # YOUR CODE HERE
+    # using the numpy max functionality on the input X array with axis=1 (rows)  - squeezes down columns to leave one value per row
+    # in order to return the max of each row
+    return X.max(axis=1)
 
 if __name__ == "__main__":
     x = np.array([1, 5, 3, 9, 2])
     count_above(x, 2)
+    values_above(x, 2)
+    X = np.array([[1.0, 2.0, 3.0], [3.0, 4.0, 9.0]])
+    column_means(X)
