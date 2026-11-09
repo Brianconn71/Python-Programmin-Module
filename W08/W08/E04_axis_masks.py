@@ -14,6 +14,9 @@ axis=1 goes along the rows.
 Each function below should be one line of Numpy, with no loop.
 """
 import numpy as np
+# Needed to add this line as was having issues with numpy versions
+# I had numpy 2.5 installed, newer numpy does not need np.int64(1)
+np.set_printoptions(legacy="1.25")
 
 
 def count_above(x, t):
@@ -25,7 +28,11 @@ def count_above(x, t):
     >>> count_above(x, 100)
     0
     """
-    return  # YOUR CODE HERE
+    # Compare the values in the np array x to the value t and check if the value in the array is greater than t
+    # works as another way of looping like in python
+    compareEntries = x > t
+    # compareEntries will be a numpy array of boolean values or 1s and 0s and we need to return the sum of the true or 1 values
+    return compareEntries.sum()
 
 
 def values_above(x, t):
@@ -62,3 +69,7 @@ def row_maxes(X):
     array([-1.])
     """
     return  # YOUR CODE HERE
+
+if __name__ == "__main__":
+    x = np.array([1, 5, 3, 9, 2])
+    count_above(x, 2)
