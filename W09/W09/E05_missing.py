@@ -35,7 +35,9 @@ def count_missing(df):
     ...                                                     "bill_mm": 1}
     True
     """
-    return  # YOUR CODE HERE
+    null_values = df.isna()
+    dictionerySumOfNulls = null_values.sum().to_dict()
+    return dictionerySumOfNulls 
 
 
 def drop_missing(df, column):
@@ -46,7 +48,8 @@ def drop_missing(df, column):
     >>> drop_missing(PENGUINS, "bill_mm")["species"].tolist()
     ['Adelie', 'Gentoo', 'Gentoo', 'Chinstrap']
     """
-    return  # YOUR CODE HERE
+    v = df[df[column].notna()]
+    return v
 
 
 def fill_with_median(df, column):
@@ -69,4 +72,8 @@ def fill_with_median(df, column):
     return  # YOUR CODE HERE
 
 
+
+if __name__ == "__main__":
+    count_missing(PENGUINS) == {"species": 0, "bill_mm": 1, "mass_g": 2}
+    drop_missing(PENGUINS, "mass_g")["species"].tolist()
 # ANSWER: (the QUESTION is at the top of this file)
