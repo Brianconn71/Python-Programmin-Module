@@ -69,11 +69,24 @@ def fill_with_median(df, column):
     >>> count_missing(PENGUINS)["mass_g"]
     2
     """
-    return  # YOUR CODE HERE
+    # create a separate copy of the input dataframe, .copy method leaves original df untouched
+    dfCopy = df.copy()
+    # HEre we use.median to get the median value of the column input by user
+    # then, fillna which is a pandas method is used to fill in the median value in place of the NAN values, it returns a pandas series
+    # this series is then used to fill in the copied df[column] column replacing the NAN values with median values.
+    dfCopy[column] = dfCopy[column].fillna(dfCopy[column].median())
+    # we then return the copied df with Median values added back to the user.
+    return dfCopy
+    
 
 
 
 if __name__ == "__main__":
     count_missing(PENGUINS) == {"species": 0, "bill_mm": 1, "mass_g": 2}
     drop_missing(PENGUINS, "mass_g")["species"].tolist()
+    fill_with_median(PENGUINS, "mass_g")["mass_g"].tolist()
 # ANSWER: (the QUESTION is at the top of this file)
+# It is better to get rid of some rows with missing values than it is to add made up and fake labels into the data.
+# Essentially, for example, bill_mm is measured on a continuous scale as its bill length in mm so filling in a median won't massively affect the data has a guess at median wont skew the data either way.
+# However, labelled data is usually either one or the otther True or false, 1 or 0. So answers wont just be a bit wrong in terms of decimal numeric values they could be totally wrong such as filling a true value when it was actually false and thus this can massively affect our training and or test data.
+# so its better to be slightly off the mark on a few test data points than completely wrong on data points thus comprimising the data for Machine learning Training.
