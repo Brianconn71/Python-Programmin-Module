@@ -35,8 +35,11 @@ def count_missing(df):
     ...                                                     "bill_mm": 1}
     True
     """
+    # using .isna pandas method which will return a boolean series of True false values where True indicates the cell is empty
     null_values = df.isna()
+    # using .sum to count the true values and .to_dict to turn the pandase series into native python
     dictionerySumOfNulls = null_values.sum().to_dict()
+    # return this dictionary to the user
     return dictionerySumOfNulls 
 
 
@@ -48,8 +51,12 @@ def drop_missing(df, column):
     >>> drop_missing(PENGUINS, "bill_mm")["species"].tolist()
     ['Adelie', 'Gentoo', 'Gentoo', 'Chinstrap']
     """
-    v = df[df[column].notna()]
-    return v
+    # using the notna pandas method on the df column input by user
+    # this will return aa series of data where null values are left out
+    # then use this series on the dataframe to only return the values which are not null.
+    columnsNotNull = df[df[column].notna()]
+    # return this to the user.
+    return columnsNotNull
 
 
 def fill_with_median(df, column):
@@ -88,5 +95,5 @@ if __name__ == "__main__":
 # ANSWER: (the QUESTION is at the top of this file)
 # It is better to get rid of some rows with missing values than it is to add made up and fake labels into the data.
 # Essentially, for example, bill_mm is measured on a continuous scale as its bill length in mm so filling in a median won't massively affect the data has a guess at median wont skew the data either way.
-# However, labelled data is usually either one or the otther True or false, 1 or 0. So answers wont just be a bit wrong in terms of decimal numeric values they could be totally wrong such as filling a true value when it was actually false and thus this can massively affect our training and or test data.
+# However, labelled data is usually either one or the other True or false, 1 or 0. So answers wont just be a bit wrong in terms of decimal numeric values they could be completely wrong such as filling a true value when it was actually false and thus this can massively affect our training and or test data.
 # so its better to be slightly off the mark on a few test data points than completely wrong on data points thus comprimising the data for Machine learning Training.
