@@ -52,7 +52,7 @@ def drop_missing(df, column):
     ['Adelie', 'Gentoo', 'Gentoo', 'Chinstrap']
     """
     # using the notna pandas method on the df column input by user
-    # this will return aa series of data where null values are left out
+    # this will return a of True/False series of values
     # then use this series on the dataframe to only return the values which are not null.
     columnsNotNull = df[df[column].notna()]
     # return this to the user.
