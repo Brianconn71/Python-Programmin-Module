@@ -42,7 +42,10 @@ def distance_matrix(X):
     array([[0., 3.],
            [3., 0.]])
     """
-    return  # YOUR CODE HERE
+    # cdist(A, B) or in this case cdist(X, X) is used to get the distance from every row as A to every row as B.
+    # using the input X data we are comparing the rows which have been already built to each other
+    # returning an n x n table where the entries (i, j) are the distances from row i to j
+    return cdist(X, X)
 
 
 # Given: the picture. imshow draws a 2-D array as an image, one pixel per
@@ -75,6 +78,8 @@ def main():
 
 if __name__ == "__main__":
     main()
+    X = np.array([[0.0, 0.0], [3.0, 4.0], [6.0, 8.0]])
+    distance_matrix(X)
 
 
 # ANSWER: (the QUESTION is at the top of this file)
