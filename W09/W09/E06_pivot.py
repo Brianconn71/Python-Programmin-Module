@@ -36,7 +36,10 @@ def wide(df, index, columns, values):
     >>> wide(RUNS, "metric", "setting", "accuracy").to_dict()
     {'norm off': {'euclidean': 0.75, 'manhattan': 0.7}, 'norm on': {'euclidean': 0.9, 'manhattan': 0.86}}
     """
-    return  # YOUR CODE HERE
+    # pivot table used on the df to reshape the long table into a wide one, using the input arguments from user
+    # index, columns and values so index becomes labels on the rows , columns labels on the column headers and values fill the cells
+    # pivot table averages the rows which land in the same cell and then we return to user
+    return df.pivot_table(index=index, columns=columns, values=values)
 
 
 def best_by(df, group, column):
@@ -47,4 +50,10 @@ def best_by(df, group, column):
     >>> best_by(RUNS, "setting", "accuracy")
     'norm on'
     """
+    r = df.groupby(group).agg(["mean"])
+
     return  # YOUR CODE HERE
+
+if __name__ == "__main__":
+    wide(RUNS, "setting", "metric", "accuracy").to_dict()
+    best_by(RUNS, "metric", "accuracy")
