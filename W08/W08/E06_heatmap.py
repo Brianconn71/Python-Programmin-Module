@@ -83,3 +83,8 @@ if __name__ == "__main__":
 
 
 # ANSWER: (the QUESTION is at the top of this file)
+# The diagonal is a different colour from the rest as it is comparing the distance with itself
+# The picture shows a distance matrix and every cell (a, b) is the difference between photo a and photo b
+# each photo is on the x and the y axis and the diagonal line is when it is comparing the distance from itself to itself
+# its a different colour as the histogram is identical to itself and they are the same s0 0 is the smallest distance between photos and is at the bottom of supplied colour scale.
+
