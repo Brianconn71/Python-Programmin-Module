@@ -24,6 +24,9 @@ Your solution should be one line of Numpy, with no loop.
 """
 import matplotlib.pyplot as plt
 import numpy as np
+# Needed to add this line as was having issues with numpy versions
+# I had numpy 2.5 installed, newer numpy does not need np.int64(1)
+np.set_printoptions(legacy="1.25")
 
 from E01_photos import DATA, load
 
@@ -48,7 +51,11 @@ def to_gray(image):
     >>> round(float(to_gray(green)[0, 0]), 2)
     182.38
     """
-    return  # YOUR CODE HERE
+    # using @ because it is used for dot product and we are using the dot product in WEIGHTS
+    # this converts the image from ed array to a 2d array of grey values 
+    # Weights is a 1d array and image is 3d so dot product is used in the last axis of the image and returns the 2d array
+    # we then return this array to the user as a float as WEIGHTS array is a float array
+    return image @ WEIGHTS
 
 
 # Given: the picture. cmap="gray" tells imshow to read the single number per
@@ -79,3 +86,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+    image = np.array([[[0, 0, 0], [255, 255, 255]]], dtype=np.uint8)
+    to_gray(image)
