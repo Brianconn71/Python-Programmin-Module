@@ -50,9 +50,14 @@ def best_by(df, group, column):
     >>> best_by(RUNS, "setting", "accuracy")
     'norm on'
     """
-    r = df.groupby(group).agg(["mean"])
-
-    return  # YOUR CODE HERE
+    # using groupby to group based on the unique values in group input argument
+    # column input argument is the column in df we wish to get the mean from
+    # agg - is a pandas methof which uses "mean" to get the average of the unique values
+    # then return a pd series to be used to get the max value from
+    groupMean = df.groupby(group)[column].agg("mean")
+    # idxmax is a pandas method used to return the label in the df with the largest value
+    # it doesnt return mean value itself and this is what is asked of us in this function
+    return groupMean.idxmax()
 
 if __name__ == "__main__":
     wide(RUNS, "setting", "metric", "accuracy").to_dict()
