@@ -38,8 +38,9 @@ def brightness(image):
     # when using mean without an axis argument of 1 or 0 then numpy will treat the whole array
     # as one flat list of numbers regardless of rows and columns. if using axes then numpy will collapse that axis into one dimension but leave other as is 
     # this then returns an array of means and not a single number
+    # wrapping my numpy mean value in a float method which turns it into an ordinary float 
     # we then return this to the user
-    return image.mean()
+    return float(image.mean())
 
 
 def darkest_first(names, values):
@@ -53,7 +54,16 @@ def darkest_first(names, values):
     >>> darkest_first(["a", "b", "c"], [1.0, 2.0, 3.0])
     array(['a', 'b', 'c'], dtype='<U1')
     """
-    return  # YOUR CODE HERE
+    # using argsort on values input argument to get the positions from smallest to largest
+    valuesSorted = np.argsort(values)
+    # names input is a regular python list and fancy indexing does not work on python lists
+    # so I turn it into a numpy array using np.array on the names input argument
+    namesArray = np.array(names)
+    # now, using the sorted positions on the created names array
+    # this is used to create a new array of the names in the order of the sorted values
+    reorderedList = namesArray[valuesSorted]
+    # we then return this new array with the names reordered from smallest to largest to the user
+    return reorderedList
 
 
 def main():
@@ -72,3 +82,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+    darkest_first(["a", "b", "c"], [5.0, 1.0, 3.0])
