@@ -40,7 +40,18 @@ def levenshtein_tol(a, b, tol):
     >>> levenshtein_tol([1.0], [999.0], 0.1)
     1
     """
-    return  # YOUR CODE HERE
+    D = [[0] * (len(b) + 1) for _ in range(len(a) + 1)]
+    for i in range(len(a) + 1):
+        D[i][0] = i
+    for j in range(len(b) + 1):
+        D[0][j] = j
+    for i in range(1, len(a) + 1):
+        for j in range(1, len(b) + 1):
+            cost = 0 if a[i - 1] - b[j - 1] <= tol else 1
+            D[i][j] = min(D[i -1][j] + 1,
+                            D[i][j -1] + 1,
+                            D[i - 1][j - 1] + cost)
+    return D
 
 
 def dtw_symbols(a, b):
