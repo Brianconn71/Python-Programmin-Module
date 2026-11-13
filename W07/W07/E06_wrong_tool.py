@@ -23,7 +23,6 @@ used for spellchecking. Write your answers in the comments at the bottom.
 """
 
 INF = float("inf")
-INF = float("inf")
 
 
 def levenshtein_tol(a, b, tol):
@@ -47,11 +46,11 @@ def levenshtein_tol(a, b, tol):
         D[0][j] = j
     for i in range(1, len(a) + 1):
         for j in range(1, len(b) + 1):
-            cost = 0 if a[i - 1] - b[j - 1] <= tol else 1
+            cost = 0 if abs(a[i - 1] - b[j - 1]) <= tol else 1
             D[i][j] = min(D[i -1][j] + 1,
                             D[i][j -1] + 1,
                             D[i - 1][j - 1] + cost)
-    return D
+    return D[-1][-1]
 
 
 def dtw_symbols(a, b):
@@ -66,7 +65,13 @@ def dtw_symbols(a, b):
     >>> dtw_symbols("bookkeeper", "bokeper")
     0.0
     """
-    return  # YOUR CODE HERE
+    D = [[INF] * (len(b) + 1) for _ in range(len(a) + 1)]
+    D[0][0] = 0.0
+    for i in range(1, len(a) + 1):
+        for j in range(1, len(b) + 1):
+            cost = 0 if a[i - 1] == b[j - 1] else 1
+            D[i][j] = cost + min(D[i - 1][j], D[i][j - 1], D[i - 1][j - 1])
+    return D[-1][-1]
 
 
 # ANSWER 1: with tol = 0 every comparison of measured floats fails, so every
@@ -84,3 +89,7 @@ def dtw_symbols(a, b):
 # mistake spellcheckers most need to catch. It is the wrong tool here, and not
 # because it is worse --- being blind to a held note is what makes it right for
 # a time series.
+
+if __name__ == "__main__":
+    levenshtein_tol([1.0], [999.0], 0.1)
+    dtw_symbols("bookkeeper", "bokeper")
