@@ -52,10 +52,15 @@ def suggest(word, words, n=3):
     sortedDictKeys = sorted(temp_dict, key=lambda keyValue: (temp_dict[keyValue], keyValue))
 
     # finally, return a liced list with the n value added as input to the function
-    # this will return the values from the list up to the n value so if n = 3 then return list [0, 1, 2]
+    # this will return the values from the list up to the n value so if n = 3 then return list of words at position [0, 1, 2]
     return sortedDictKeys[:n]
 
 if __name__ == "__main__":
     suggest("cet", WORDS)
 
 # ANSWER: (the QUESTION is at the top of this file)
+# if we sorted on distance alone then tied words (example: bat and cat) would have nothing to separate them.
+# In Python, sorted() and list.sort() are guaranteed to remain stable which means
+# when multiple records have same key then original order is preserved so for suggest("cet", WORDS)
+# the returned list would be  ["bat","cat","car"] instead of the expected ["cat","bat","car"] and so doctest would fail. 
+# this is not a function problem but a doctest problem 
