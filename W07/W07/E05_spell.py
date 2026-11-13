@@ -59,8 +59,9 @@ if __name__ == "__main__":
     suggest("cet", WORDS)
 
 # ANSWER: (the QUESTION is at the top of this file)
-# if we sorted on distance alone then tied words (example: bat and cat) would have nothing to separate them.
+# if we sorted on distance alone then tied words (example: bat and car) would have nothing to separate them.
 # In Python, sorted() and list.sort() are guaranteed to remain stable which means
 # when multiple records have same key then original order is preserved so for suggest("cet", WORDS)
-# the returned list would be  ["bat","cat","car"] instead of the expected ["cat","bat","car"] and so doctest would fail. 
-# this is not a function problem but a doctest problem 
+# the returned list would be  ["cat","cart","car"] instead of ["cat","bat","car"] so that the doctest would then fail.
+# this is not a function problem but a doctest problem. There would be 4 words tied on 2 moves away when we sort
+# based on (distance, word) then we are guaranteed on the same output from the function regardless which means we can successfully run doctest on it
