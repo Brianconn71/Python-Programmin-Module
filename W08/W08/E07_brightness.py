@@ -18,6 +18,10 @@ called fancy indexing, and it is how a sorted list of names is built here.
 """
 import numpy as np
 
+# Needed to add this line as was having issues with numpy versions
+# I had numpy 2.5 installed, newer numpy does not need np.int64(1)
+np.set_printoptions(legacy="1.25")
+
 from E01_photos import DATA, load
 
 
@@ -30,7 +34,12 @@ def brightness(image):
     >>> brightness(np.zeros((4, 4, 3), dtype=np.uint8))
     0.0
     """
-    return  # YOUR CODE HERE
+    # using mean numpy method to get the mean of every number in the image
+    # when using mean without an axis argument of 1 or 0 then numpy will treat the whole array
+    # as one flat list of numbers regardless of rows and columns. if using axes then numpy will collapse that axis into one dimension but leave other as is 
+    # this then returns an array of means and not a single number
+    # we then return this to the user
+    return image.mean()
 
 
 def darkest_first(names, values):
