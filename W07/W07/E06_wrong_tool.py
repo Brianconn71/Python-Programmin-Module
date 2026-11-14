@@ -39,17 +39,37 @@ def levenshtein_tol(a, b, tol):
     >>> levenshtein_tol([1.0], [999.0], 0.1)
     1
     """
+    # This function builds a table of distances betwden each and every prefxi of input a abd b. 
+    # The final distance which is asked as the return value is the bottom right corner of the table.
+    
+    # Creates a grid/table of zeros based on the lngth of input a + b plus 1. The + 1 is used to account for the empty prefix of a and b
+    # which means row 0 is 0 items of a and columns is 0 items of b.
+    # list comprehension is used to make each row a separate list
     D = [[0] * (len(b) + 1) for _ in range(len(a) + 1)]
+    # fill in the first column with the distance of the empty prefix of b to the prefix in a.
+    # thus, the first i items of a to the empty prefix of b is i as it takes i deletions to get from the first i itemsof a to empty prefix b
     for i in range(len(a) + 1):
         D[i][0] = i
+    # follows same logic as above but instead uses rows rather than columns to fill 
     for j in range(len(b) + 1):
         D[0][j] = j
+    # below loops fill in the remainder of the table, row by row from left to right and start at 1 as 0 is already filled
+    # this order ensures that values in cell above, to the left and diagonally to the left are always finished first
     for i in range(1, len(a) + 1):
         for j in range(1, len(b) + 1):
+            # compare the newest item in each prefix
+            # a[i - 1] & b[j - 1] are the extra empty rows and columns which shift everything by one so as an example
+            # row i corresponds to list position i - 1
+            # abs gets the absolute difference between two values and turns a negative into a positive value
+            # <= tol checks if gap is within the tolerance, if yes cost is nothing if not cost is 1
             cost = 0 if abs(a[i - 1] - b[j - 1]) <= tol else 1
+            # D[i-1][j] + 1 i-1 is already turned into a row index so now delete a's new item
+            # D[i][j-1] + 1 j-1 is already turned into a column index so now insert b's new item which will cost 1
+            # D[i-1][j-1] + cost i -1 and j - 1 are already turned into row and column values so now substitute a's new item for b's or keep it if the cost is 0
             D[i][j] = min(D[i -1][j] + 1,
                             D[i][j -1] + 1,
                             D[i - 1][j - 1] + cost)
+    # return the bottom right cell which uses all a and b  so -1 means the last possible value.
     return D[-1][-1]
 
 
@@ -70,7 +90,9 @@ def dtw_symbols(a, b):
     for i in range(1, len(a) + 1):
         for j in range(1, len(b) + 1):
             cost = 0 if a[i - 1] == b[j - 1] else 1
-            D[i][j] = cost + min(D[i - 1][j], D[i][j - 1], D[i - 1][j - 1])
+            D[i][j] = cost + min(D[i - 1][j],
+                                 D[i][j - 1],
+                                 D[i - 1][j - 1])
     return D[-1][-1]
 
 
