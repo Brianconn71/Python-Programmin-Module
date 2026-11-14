@@ -41,7 +41,13 @@ def train(X, y, k):
     >>> hasattr(model, "X_")      # fitted, so it has remembered its data
     True
     """
+    #setting up a knn classifier and setting it with k as the k value entered by user
+    # this k is what is used to guess/predict based on neighbour proximity
+    # k = 5 means base this prediction on the 5 nearest neighbouring values to the one we are predicting
     model = KNN(k=k)
+    # then we are returning a KNN classifier already set to k neighbours and fitted based
+    # on the input X rows and y labels from the user
+    # fit returns the actual model which can be used for predicting and scoring later
     return model.fit(X, y)
 
 
@@ -65,8 +71,14 @@ def label_for(model, row):
     >>> label_for(train(X, Y, 3), [6.0])
     'stork'
     """
-    r = [row]
-    return model.predict(r)[0]
+    # row is coming into the function as a single row of values
+    # predict expects a table/grid of lists of rows so, we take the input row r and make it a 
+    # nested row which can then be past to predict method to make a prediction for the row input value
+    nestedRow = [row]
+    # we now use predict functionality to make a prediction on the input row label value
+    # this returns an array so to get the label value we add [0] to return first value from array
+    # we wrap it in a str() which ensures we get a plain string return value
+    return str(model.predict(nestedRow)[0])
 
 
 def accuracy(model, X, y):
@@ -82,6 +94,8 @@ def accuracy(model, X, y):
     >>> accuracy(model, np.array([[3.1], [6.5]]), np.array(["stork", "swan"]))
     0.5
     """
+    # now we use the score method which gets the fraction of X that gets correctly labelled.
+    # We are asked to return it as a plain float so use python builtin float method to ensure compatibility
     return float(model.score(X, y))
 
 
