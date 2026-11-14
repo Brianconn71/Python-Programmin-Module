@@ -55,11 +55,6 @@ seed moved it. Answer in the comment at the bottom of this file.
 
 
 CHECKLIST = [
-    "SEED changed to your student ID in E01_penguins.py",
-    "ran: python E01_penguins.py, and watched it re-run",
-    "forked the Overleaf project to your own account",
-    "author line changed to your name and ID",
-    "uploaded table1.tex, table2.tex, accuracy.pdf",
     "corrected every number quoted in the prose",
     "exported the pdf and saved it as paper.pdf",
 ]
@@ -77,3 +72,13 @@ if __name__ == "__main__":
 
 
 # ANSWER: (the QUESTION is at the top of this file)
+# The best combination from lecture: Best on development: cats off, norm on, euclidean, k=5
+# my best combination: Best on development: cats off, norm on, chebyshev, k=25
+# yes the best combination changed
+
+# One number I had to correct was in the original accuracy peaks around k = 5,
+# however in my run I found accuracy peaks around k = 9 - 15
+
+# Why a different seed moved it? the seed controls how much data ends up as a test set
+# there are 266 peenguins tested so amount of penguins moved to test would noticeably change the accuracy score
+# 
