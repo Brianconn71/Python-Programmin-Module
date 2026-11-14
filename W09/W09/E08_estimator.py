@@ -41,7 +41,9 @@ def train(X, y, k):
     >>> hasattr(model, "X_")      # fitted, so it has remembered its data
     True
     """
-    return  # YOUR CODE HERE
+    model = KNN(k=k)
+    return model.fit(X, y)
+
 
 
 def label_for(model, row):
@@ -63,7 +65,8 @@ def label_for(model, row):
     >>> label_for(train(X, Y, 3), [6.0])
     'stork'
     """
-    return  # YOUR CODE HERE
+    r = [row]
+    return model.predict(r)[0]
 
 
 def accuracy(model, X, y):
@@ -79,8 +82,13 @@ def accuracy(model, X, y):
     >>> accuracy(model, np.array([[3.1], [6.5]]), np.array(["stork", "swan"]))
     0.5
     """
-    return  # YOUR CODE HERE
+    return float(model.score(X, y))
 
+
+if __name__ == "__main__":
+    model = train(X, Y, 1)
+    label_for(model, [3.2])
+    accuracy(model, X, Y)
 
 # Write it once yourself, then use the built-in for the rest of your life:
 # accuracy is model.score with a float() round it. Every scikit-learn
