@@ -1,4 +1,4 @@
 model,"cats off, norm off","cats off, norm on","cats on, norm off","cats on, norm on"
 Dummy (most frequent),0.504,0.504,0.504,0.504
-Decision tree,0.847,0.849,0.851,0.852
-Random forest,0.897,0.897,0.900,0.901
+Decision tree,0.858,0.858,0.865,0.866
+Random forest,0.882,0.880,0.897,0.895
