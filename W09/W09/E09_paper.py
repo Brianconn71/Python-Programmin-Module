@@ -79,6 +79,6 @@ if __name__ == "__main__":
 # One number I had to correct was in the original accuracy peaks around k = 5,
 # however in my run I found accuracy peaks around k = 9 - 15
 
-# Why a different seed moved it? the seed controls how much data ends up as a test set
-# there are 266 peenguins tested so amount of penguins moved to test would noticeably change the accuracy score
-# 
+# Why a different seed moved it? the seed controls which penguins end up as test and in each cross validation fold
+# there are 266 penguins so amount of penguins moved to test would noticeably change the accuracy score
+# The best cells are not far apart so which wins is down to which penguin landed in test or train split. which is why k changed but the big effect of normalisation on and cats off stayed the same
