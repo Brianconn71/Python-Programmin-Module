@@ -64,9 +64,21 @@ def quickest_times(start):
     >>> quickest_times("Clifden")["Galway"]
     72
     """
+    # initialize an empty dictionary to store town names and route costs
     quickest_route = {}
+    # loop through the town names in ROADS
+    for town in ROADS:
+        # call dijkstra function with roads_from method imported,
+        # the start toen entered by user 
+        # the town name iteration of the loop
+        cost, route = dijkstra(roads_from, start, town)
+        # add this town and the cost of the trip to the new dictionsry
+        quickest_route[town] = cost
+    # return the dictionary to the user
     return  quickest_route
 
 if __name__ == "__main__":
     times = quickest_times("Galway")
     print(times["Clifden"])
+    times = quickest_times("Galway")
+    times["Roundstone"]
