@@ -37,7 +37,68 @@ TIMEOUT = 60
 VERSION = "2026-09-23"
 
 MANIFEST = {
-    "W06": {
+    "W00": {
+            # Given code: run it, check your setup, change nothing.
+            "E01_test.py": [],
+        },
+        "W01": {
+            # An empty list means nothing in the file is the student's work: it is
+            # given code, and make_stubs.py copies it through untouched.
+            "E01_newton.py": [],
+            "E02_first_last.py": ["first_last"],
+            "E03_slices.py": ["middle", "last_three"],
+            "E04_count_vowels.py": ["count_vowels"],
+            "E05_squares.py": ["squares"],
+            "E06_cumsum.py": ["cumsum"],
+            "E07_product.py": ["product"],
+            "E08_palindrome.py": ["is_palindrome"],
+            "E09_hailstones.py": ["hailstones", "longest_hailstone"],
+            "E10_hailstones_iterate.py": ["hailstone_step", "reaches_one"],
+            "E11_rotate.py": ["rotate"],
+            "E12_caesar_shifts.py": ["all_shifts"],
+            "E13_caesar_crack.py": ["english_score", "crack"],
+            "E14_newton_cbrt.py": ["newton_cbrt"],
+            "E15_gcd.py": ["gcd"],
+        },
+        "W02": {
+            # Given code, not exercises: the empty list means make_stubs.py copies
+            # them through untouched, so students get the working game.
+            "E01_oracle.py": [],
+            "oracle_keys.py": [],
+            "E02_get_or.py": ["get_or"],
+            "E03_invert_dict.py": ["invert_dict"],
+            "E04_merge.py": ["merge"],
+            "E05_tally.py": ["tally", "tally_counter"],
+            "E06_group_by.py": ["group_by_first_letter"],
+            "E07_key_stats.py": ["longest_run", "switch_rate"],
+            "E08_save_history.py": ["history_path", "save_history",
+                                    "load_histories", "total_keys"],
+            "E09_ngram_sweep.py": ["accuracy", "sweep"],
+        },
+        "W03": {
+            # Given code: run it, read it, change nothing. See W01/E01_newton.py.
+            "E01_bom.py": [],
+            "E02_sort_by_key.py": ["sort_by_mass", "heaviest"],
+            "E03_nested_sum.py": ["nested_sum"],
+            "E04_flatten.py": ["flatten"],
+            "E05_count_parts.py": ["count_parts", "deepest"],
+            "E06_apply_fn.py": ["apply_fn_to_list", "apply_fn_to_list_gen"],
+            "E07_part_paths.py": ["part_paths", "find_part"],
+            "E08_bom_json.py": ["load_bom", "repriced", "save_bom"],
+        },
+        "W04": {
+            # Given code: run it, read it, change nothing. See W01/E01_newton.py.
+            "E01_SimpleDict.py": [],
+            "E02_bucket_index.py": ["bucket_index"],
+            "E03_is_hashable.py": ["is_hashable"],
+            "E04_string_collision.py": ["find_collision"],
+            # E05 and E06 each carry their own copy of SimpleDict as given code,
+            # rather than importing E01's and subclassing it: inheritance is not
+            # taught this week. E06's copy includes E05's __delitem__.
+            "E05_delitem.py": ["SimpleDict.__delitem__"],
+            "E06_fast_contains.py": ["SimpleDict.__contains__"],
+        },
+        "W06": {
             # Given code: run it, read it, change nothing. See W01/E01_newton.py.
             # It holds both of the week's graphs: the river and the road map.
             "E01_river.py": [],
