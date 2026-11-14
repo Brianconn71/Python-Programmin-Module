@@ -49,7 +49,12 @@ def encode(df, column):
     >>> encode(PENGUINS, "island")["island_Dream"].tolist()
     [1, 0, 0, 0, 1]
     """
-    return  # YOUR CODE HERE
+    # one-hot encoder turns a text column into numbers so maths can be done on it, eg in this case the species column
+    # column gets replaced by one column with 0 or 1 values per distinct text value in the column
+    # get_dummies is pandas built in one-hot encoder method. takes the input dataframe df and column input to be encoded
+    # returns a new dataframe with specified column replaced new values columns, if no column specified then all text columns would be encoded
+    # dtype = int ensures values are retuned in the new dataframe for the column as integer values either 0 or 1
+    return pd.get_dummies(df, columns=[column], dtype=int)
 
 
 def n_new_columns(df, column):
@@ -62,9 +67,20 @@ def n_new_columns(df, column):
     >>> n_new_columns(PENGUINS, "island")      # 2 islands, minus the original
     1
     """
-    return  # YOUR CODE HERE
+    # We get length of the input df columns as a value
+    columnsInDf = len(df.columns)
+    # now reuse the encode function we wrote above to encode the input df with the specified column which encodes the column from text to numbers
+    encodedDf = encode(df, column)
+    # then, as specifed as the reason for this function.
+    # We return to user the difference in the leght of columns in the new encoded df to the columns in the old df
+    return len(encodedDf.columns) - columnsInDf
 
 
+
+if __name__ == "__main__":
+    out = encode(PENGUINS, "species")
+    "species" in out.columns
+    n_new_columns(PENGUINS, "species") 
 # Write it once yourself, then use the built-in for the rest of your life:
 # n_new_columns is only ever a sanity check. pandas already knows how wide
 # the result is, and encode(df, column).shape[1] will tell you.
