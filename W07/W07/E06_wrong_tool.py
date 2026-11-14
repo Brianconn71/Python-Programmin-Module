@@ -58,14 +58,14 @@ def levenshtein_tol(a, b, tol):
     for i in range(1, len(a) + 1):
         for j in range(1, len(b) + 1):
             # compare the newest item in each prefix
-            # a[i - 1] & b[j - 1] are the extra empty rows and columns which shift everything by one so as an example
+            # a[i - 1] & b[j - 1] are new items the - 1 is advised as the extra empty row and column shifts table indexs by 1
             # row i corresponds to list position i - 1
             # abs gets the absolute difference between two values and turns a negative into a positive value
             # <= tol checks if gap is within the tolerance, if yes cost is nothing if not cost is 1
             cost = 0 if abs(a[i - 1] - b[j - 1]) <= tol else 1
-            # D[i-1][j] + 1 i-1 is already turned into a row index so now delete a's new item
-            # D[i][j-1] + 1 j-1 is already turned into a column index so now insert b's new item which will cost 1
-            # D[i-1][j-1] + cost i -1 and j - 1 are already turned into row and column values so now substitute a's new item for b's or keep it if the cost is 0
+            # D[i-1][j] + 1 the first i -1 items are already turned into the first j of b so delete a's newest item +1
+            # D[i][j-1] + 1 the first i items are already turned into the first j - 1 of b so insert b's newest item +1
+            # D[i-1][j-1] + cost i -1 and j - 1 both of the shorter prefixes are now done so we either keep (0) or substitute (1)
             D[i][j] = min(D[i -1][j] + 1,
                             D[i][j -1] + 1,
                             D[i - 1][j - 1] + cost)
@@ -85,14 +85,30 @@ def dtw_symbols(a, b):
     >>> dtw_symbols("bookkeeper", "bokeper")
     0.0
     """
+    # This function builds a table of distances betwden each and every prefxi of input a abd b.
+    # function is similar to levenshtein_tol above but unlike levenshtein_tol DTW has no delete or insert so each item must be paired with something
+    # in this function edges are infinity and dont get counted up
+
+    # build the grid/table of distances between each value of a and b plus add an extra row and column for empty values or nothing in this cell yet.
+    # every cell starts at infinity which means its not filled yet but gets value filed later in the nested loop below.
     D = [[INF] * (len(b) + 1) for _ in range(len(a) + 1)]
+    # fill first cell with 0.0 as when nothing gets matched to nothing cost is nothing or in this case 0.0
     D[0][0] = 0.0
+
+    # both loops go through every cell except the starting empty cell at 0,0
     for i in range(1, len(a) + 1):
         for j in range(1, len(b) + 1):
+            # compare current letters in loop, if they match cost is nothing (0) if they don't cost is 1, -1 is used to ensure we dont get an index out of bounds error
+            # as the extra row and column shift table indexs by 1
             cost = 0 if a[i - 1] == b[j - 1] else 1
+            # adds the cost of paairing the two letters and takes the cheapest option and adds to table.
+            # D[i - 1][j] above - bs letter is reused and paired with a different a letter
+            # D[i][j - 1] left - a letter is reused and paired with a different b letter
+            # D[i - 1][j - 1] diagoonal - both move to the next letter and are paired together, if they match cost is 0 if not cost is 1
             D[i][j] = cost + min(D[i - 1][j],
                                  D[i][j - 1],
                                  D[i - 1][j - 1])
+    # return the bottom right cell where both string values are paired
     return D[-1][-1]
 
 
